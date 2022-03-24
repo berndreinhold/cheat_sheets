@@ -1,3 +1,5 @@
+# python
+## named tuples
 https://stackoverflow.com/questions/2970608/what-are-named-tuples-in-python
 tuples are immutable
 named tuples are tuples with additional possibility to access variables by name, rather than index
@@ -21,20 +23,25 @@ Since named tuples are immutable, they can be used as dict keys.
 namedtuple._asdict()
 
 
--------------------
+
+os.makedirs(path, exist_ok=True)
+
+## logging
+https://docs.python.org/3/howto/logging.html#configuring-logging-for-a-library
+https://stackoverflow.com/questions/50391429/logging-in-classes-python
+
+
+## performance python code classes
+turned code into classes and following that the garbage collection seemed not to work as well anymore. Ran into memory issues with the programs.
+
+
+
+# OS
+## usb drive
 usb drive could not be mounted anymore in Linux.
 in windows it still works
 my Linux hat lost power all of sudden, even though plugged in.
 
-
-------------------
-os.makedirs(path, exist_ok=True)
-
-
-https://docs.python.org/3/howto/logging.html#configuring-logging-for-a-library
-
-
-
-turned code into classes and following that the garbage collection seemed not to work as well anymore. Ran into memory issues with the programs.
-
+try: 
+dmesg | less
 
