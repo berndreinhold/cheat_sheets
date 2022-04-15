@@ -43,6 +43,36 @@ _column of group by statement is odd_
 
     df_gb = df_gb.apply({'groupby_filename': lambda x: x.split(",")[0]})  # before df_gb has 4 columns, after this apply() only the groupby_filename column - why?
 
+## pandas dates:
+    if self.df[ds]["date"].min() is not pd.NaT:
+        self.min_date = min([self.df[ds]["date"].min(), self.min_date])
+    if self.df[ds]["date"].max() is not pd.NaT:
+        self.max_date = max([self.df[ds]["date"].max(), self.max_date])
+
+need to check for pd.NaT, because it would both be min and max.
+
+
+tried many different things:
+        pd.Timedelta() works best for adding margins to dates for plotting. 
+        add 5 % margin to the 
+        plt.xlim((self.min_date - pd.Timedelta(10, "days"), self.max_date + pd.Timedelta(10, "days")))
+        
+        print("plot: ", self.min_date, self.max_date)
+        dates_with_margin = (self.min_date.value*0.99, self.max_date.value*1.01)  # 1 percent margin, .value gives the unix timestamp in nanosec
+        print("plot: ", dates_with_margin)
+        dates_with_margin2 = (pd.to_datetime(dates_with_margin[0], unit="ns"), pd.to_datetime(dates_with_margin[1], unit="ns"))
+        dates_with_margin3 = 
+        print("plot: dates_with_margin2: ", dates_with_margin2)
+        print("plot: dates_with_margin3: ", dates_with_margin3)
+        
+## pandas fill variable depending on condition, that features other columns:
+        out.loc[pd.isnull(out["user_id_ds2"]), "dataset"] = 1  # ds1
+        out.loc[pd.isnull(out["user_id_ds1"]), "dataset"] = 3  # ds2
+        out.loc[~(pd.isnull(out["user_id_ds2"]) | pd.isnull(out["user_id_ds1"])), "dataset"] = 2  # duplicates
+        out["dataset"] = out["dataset"].astype(int)
+
+
+
 ## class
 class X():
     def Y(self, dataset : str):        
@@ -51,10 +81,9 @@ class X():
     def Y(self):
         pass
 
-this does not work, the second Y() masks the first Y()
+this does not work, the second Y() masks the first Y() - in C++ one could overload like this, but not in python it seems.
 
-# markdown
-
+one could use decorators though: 
 
 ## named tuples
 https://stackoverflow.com/questions/2970608/what-are-named-tuples-in-python
@@ -91,6 +120,32 @@ https://stackoverflow.com/questions/50391429/logging-in-classes-python
 ## performance python code classes
 turned code into classes and following that the garbage collection seemed not to work as well anymore. Ran into memory issues with the programs.
 
+## if statements cannot be part of a for loop.
+Except use generators or two lines :)
+https://stackoverflow.com/questions/6981717/pythonic-way-to-combine-for-loop-and-if-statement
+
+## testing, Test Driven Development (TDD)
+https://codefellows.github.io/sea-python-401d2/lectures/tdd_with_pytest.html
+Look for python files starting with test_, then write functions starting with test_. These are executed by pytest.
+
+"The solution should be pretty clear. If the problem is that development and testing are too far apart, then move them closer together. This is the aim of Test Driven Development. To close both the temporal and conceptual gaps between the worlds of development and testing."
+
+Is also interesting with datasets, that are being processed. Provide test datasets to run the code with.
+
+https://docs.python.org/3/library/unittest.html#assert-methods
+
+https://docs.pytest.org/en/7.1.x/ (pytest is a bit more lightweight than unittest and comes without API)
+
+https://wiki.python.org/moin/PythonTestingToolsTaxonomy pytest or unittest are good choices
+
+# markdown
+## links to headlines in markdown
+- https://docs.gitlab.com/ee/user/markdown.html#header-ids-and-links
+- inspect html source (right-click in browser)
+- https://stackoverflow.com/questions/51221730/markdown-link-to-header
+
+## automatic TOC on GIThub
+https://github.blog/changelog/2021-04-13-table-of-contents-support-in-markdown-files/
 
 
 # OS
@@ -147,3 +202,7 @@ reinhold@Eddimed-lnx01:~/Software/OPEN/OPEN_diabetes(classes_config_files)$ awk 
      27 6
     165 7
     173 8
+
+# VS code
+https://stackoverflow.com/questions/51244223/visual-studio-code-how-debug-python-script-with-arguments#51244649
+launch.json and args-dictionary
