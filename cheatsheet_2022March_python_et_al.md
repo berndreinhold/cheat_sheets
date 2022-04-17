@@ -71,7 +71,35 @@ tried many different things:
         out.loc[~(pd.isnull(out["user_id_ds2"]) | pd.isnull(out["user_id_ds1"])), "dataset"] = 2  # duplicates
         out["dataset"] = out["dataset"].astype(int)
 
+## pandas .loc and row data structure
+one row as selected through: df.loc[[selection-criteria]].apply(lambda row: print(row))
+user_id_ds1_x     NaN
+user_id_ds2       NaN
+user_id_ds3_x    38.0
+user_id_ds1_y     NaN
+user_id_ds3_y     NaN
+Name: 10, dtype: object
 
+Name is the index
+
+
+## pandas .loc and apply
+```python
+def get_the_right_value2(row, col_names : str):
+        x = row[col_names[0]]
+        y = row[col_names[1]]
+
+        # it is clear already from the dataframe selection that one of x or y are not NA
+        if pd.isna(x): return y
+        elif pd.isna(y): return x
+        else:
+            if x == y: return x
+            else: raise ValueError(f"{x} or {y} are not identical, even though they should be, if they are both not NA. row: {row}")
+            
+    #df_merged.loc[(~pd.isna(df_merged["user_id_ds3_x"]) |  ~pd.isna(df_merged["user_id_ds3_y"])), "user_id_ds3"] = df_merged.loc[(~pd.isna(df_merged["user_id_ds3_x"]) |  ~pd.isna(df_merged["user_id_ds3_y"])), ["user_id_ds3_x", "user_id_ds3_y"]].apply(lambda x: get_the_right_value(x[0],x[1]), axis=1)
+    df_merged.loc[(~pd.isna(df_merged["user_id_ds3_x"]) |  ~pd.isna(df_merged["user_id_ds3_y"])), "user_id_ds3"] = df_merged.loc[(~pd.isna(df_merged["user_id_ds3_x"]) |  ~pd.isna(df_merged["user_id_ds3_y"]))].apply(lambda row: get_the_right_value2(row, ["user_id_ds3_x", "user_id_ds3_y"]), axis=1)
+```
+from process_test_datasets.py
 
 ## class
 class X():
@@ -147,6 +175,8 @@ https://wiki.python.org/moin/PythonTestingToolsTaxonomy pytest or unittest are g
 ## automatic TOC on GIThub
 https://github.blog/changelog/2021-04-13-table-of-contents-support-in-markdown-files/
 
+# JSON
+keys must be strings, cannot be integers and should be different from each other
 
 # OS
 ## usb drive
