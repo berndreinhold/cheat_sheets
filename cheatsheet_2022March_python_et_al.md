@@ -23,7 +23,9 @@ _column of group by statement is odd_
     test = test.loc[test["filenames"].apply(lambda a: '"' in str(a))]
     print(test["filenames"].apply(lambda a: '"' in str(a)))
 
-
+## pandas dataframe
+- has no attribute unique(): df.unique(), but pd.Series has a unique()-function
+- dataframe.drop_duplicates()
 
 ## pandas groupby, sort, agg
     self.df[f"{dataset}_groupby"] = self.df[dataset][["date", "user_id", "filename"]].groupby(["date", "user_id"], as_index=False, dropna=False).agg("count")
@@ -83,7 +85,7 @@ Name: 10, dtype: object
 Name is the index
 
 
-## pandas .loc and apply
+## pandas .loc, apply and lambda
 ```python
 def get_the_right_value2(row, col_names : str):
         x = row[col_names[0]]
@@ -100,6 +102,11 @@ def get_the_right_value2(row, col_names : str):
     df_merged.loc[(~pd.isna(df_merged["user_id_ds3_x"]) |  ~pd.isna(df_merged["user_id_ds3_y"])), "user_id_ds3"] = df_merged.loc[(~pd.isna(df_merged["user_id_ds3_x"]) |  ~pd.isna(df_merged["user_id_ds3_y"]))].apply(lambda row: get_the_right_value2(row, ["user_id_ds3_x", "user_id_ds3_y"]), axis=1)
 ```
 from process_test_datasets.py
+
+## matplotlib - events 
+onpick()
+
+https://matplotlib.org/stable/users/explain/event_handling.html
 
 ## class
 class X():
@@ -165,6 +172,29 @@ https://docs.python.org/3/library/unittest.html#assert-methods
 https://docs.pytest.org/en/7.1.x/ (pytest is a bit more lightweight than unittest and comes without API)
 
 https://wiki.python.org/moin/PythonTestingToolsTaxonomy pytest or unittest are good choices
+
+## pyplot
+The issue: the outer part of the plot was transparent (alpha=0.0). I needed it opaque (alpha=1.0)
+```python
+plt.rcParams().update([dict]) 
+```
+did the job:
+
+```python
+plt.rcParams.update({"figure.facecolor" : (1.0, 1.0, 1.0, 1.0), "savefig.facecolor": (1.0, 1.0, 1.0, 1.0)})
+plt.figure(figsize=(15,15),facecolor='red')
+```
+The red facecolor and transparent=False would not work, even without the presence of the ``plt.rcParams.update([dict])`` command.
+
+## Venn diagrams and UpsetPlot
+- https://towardsdatascience.com/how-to-create-and-customize-venn-diagrams-in-python-263555527305
+- https://pypi.org/project/UpSetPlot/
+- https://upsetplot.readthedocs.io/en/latest/api.html
+- https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6876017
+
+
+## small
+- int(x), where x is a tuple does not work element-wise
 
 # markdown
 ## links to headlines in markdown
