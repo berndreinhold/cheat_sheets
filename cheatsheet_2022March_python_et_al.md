@@ -103,6 +103,12 @@ def get_the_right_value2(row, col_names : str):
 ```
 from process_test_datasets.py
 
+https://realpython.com/python-lambda/
+
+# python reduce()
+https://realpython.com/python-reduce-function/
+reduce() performsa an operation called folding or reduction.
+
 ## matplotlib - events 
 onpick()
 
