@@ -211,6 +211,25 @@ The red facecolor and transparent=False would not work, even without the presenc
 ## automatic TOC on GIThub
 https://github.blog/changelog/2021-04-13-table-of-contents-support-in-markdown-files/
 
+## python documentation generator
+comparison: https://medium.com/@peterkong/comparison-of-python-documentation-generators-660203ca3804
+
+recommendation: pdoc for smaller projects
+
+
+## random number generation
+```python
+from numpy import random
+```
+many functions to choose from.
+
+https://stackoverflow.com/questions/17821458/random-number-from-histogram
+### KDE - kernel density estimation
+https://nbviewer.org/url/mglerner.com/HistogramsVsKDE.ipynb
+
+https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html
+https://www.mvstat.net/tduong/research/seminars/seminar-2001-05/
+
 # JSON
 keys must be strings, cannot be integers and should be different from each other
 
