@@ -247,6 +247,7 @@ k,
 L, &
 
 # awk
+```
 reinhold@Eddimed-lnx01:~/Daten/OPEN/OpenAPS_Data/raw$ find . -maxdepth 3 -iname "*direct-sharing-*" | awk -F 'direct-sharing-' '{print $NF}' | sort -n | uniq -c
     288 31
       8 133
@@ -268,10 +269,10 @@ reinhold@Eddimed-lnx01:~/Software/OPEN/OPEN_diabetes(classes_config_files)$ awk 
      27 6
     165 7
     173 8
-
+```
 duplicates (...)
 
-
+```
 reinhold@Eddimed-lnx01:~/Software/OPEN/OPEN_diabetes(classes_config_files)$ awk -F '"' '{print $2}' ds1_groupby_date_user_id.csv | awk -F',' '{print $1}' | sort -n | uniq -c
       1 
   26183 1
@@ -287,7 +288,57 @@ reinhold@Eddimed-lnx01:~/Software/OPEN/OPEN_diabetes(classes_config_files)$ awk 
      27 6
     165 7
     173 8
+```
 
 # VS code
+_Disclaimer: below sentences have been copied from the respective documentations. Authorship of these sentences is with the authors of these webpages._ 
+
+```
+CTRL + SHFT + P  # Control Palette
+```
+Python: Select Interpreter
+## debugging
 https://stackoverflow.com/questions/51244223/visual-studio-code-how-debug-python-script-with-arguments#51244649
 launch.json and args-dictionary
+
+https://code.visualstudio.com/docs/python/debugging
+launch.json
+```
+F5, CTRL+SHFT+F5
+```
+remote debugging: https://code.visualstudio.com/docs/python/debugging#_debugging-by-attaching-over-a-network-connection
+SSH forwarding
+
+## Options
+```
+justMyCode = False  
+```
+## [Environments](https://code.visualstudio.com/docs/python/environments)
+### virtual environments:
+To prevent such clutter, developers often create a virtual environment for a project. A virtual environment is a folder that contains a copy (or symlink) of a specific interpreter. When you install into a virtual environment, any packages you install are installed only in that subfolder. When you then run a Python program within that environment, you know that it's running against only those specific packages.
+
+    Note: While it's possible to open a virtual environment folder as a workspace, doing so is not recommended and might cause issues with using the Python extension.
+
+You can configure VS Code to use any Python environment you have installed, including virtual and conda environments. You can also use a separate environment for debugging. For full details, see Environments.
+
+## Environmental variables
+https://code.visualstudio.com/docs/python/environments#_environment-variables
+
+- dev.env file
+- prod.env file
+- key-value pairs of environmental variables
+
+The PYTHONPATH environment variable specifies additional locations where the Python interpreter should look for modules. In VS Code, PYTHONPATH can be set through the terminal settings (terminal.integrated.env.*) and/or within an .env file.
+
+
+# [Unit Tests](https://code.visualstudio.com/docs/python/testing)
+A unit is a specific piece of code to be tested, such as a function or a class. Unit tests are then other pieces of code that specifically exercise the code unit with a full range of different inputs, including boundary and edge cases.
+
+Because unit tests are small, isolated pieces of code (in unit testing you avoid external dependencies and use mock data or otherwise simulated inputs), they're quick and inexpensive to run. This characteristic means that you can run unit tests early and often.
+
+
+Python tests are Python classes that reside in separate files from the code being tested. Each test framework specifies the structure and naming of tests and test files. Once you write tests and enable a test framework, VS Code locates those tests and provides you with various commands to run and debug them.
+
+Pytest or Unittest frameworks
+
+[Create Tests](https://code.visualstudio.com/docs/python/testing#_create-tests)
