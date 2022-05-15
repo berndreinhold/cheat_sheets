@@ -339,6 +339,14 @@ Because unit tests are small, isolated pieces of code (in unit testing you avoid
 
 Python tests are Python classes that reside in separate files from the code being tested. Each test framework specifies the structure and naming of tests and test files. Once you write tests and enable a test framework, VS Code locates those tests and provides you with various commands to run and debug them.
 
-Pytest or Unittest frameworks
 
-[Create Tests](https://code.visualstudio.com/docs/python/testing#_create-tests)
+## ToDo
+1. download framework (e.g. Pytest or Unittest frameworks)
+2. create test_xxx.py script ([Create Tests](https://code.visualstudio.com/docs/python/testing#_create-tests))
+3. [run tests](https://code.visualstudio.com/docs/python/testing#_run-tests) or even [in parallel](https://code.visualstudio.com/docs/python/testing#_run-tests-in-parallel)
+
+
+# Notebooks
+"The support for mixing executable code, equations, visualizations, and rich Markdown makes notebooks useful for breaking down new concepts in a story telling form. This makes notebooks an exceptional tool for educators and students!" [quote](https://code.visualstudio.com/docs/datascience/overview)
+
+Looks interesting: Python Interactive Window: https://code.visualstudio.com/docs/python/jupyter-support-py
