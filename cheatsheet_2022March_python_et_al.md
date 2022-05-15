@@ -350,3 +350,8 @@ Python tests are Python classes that reside in separate files from the code bein
 "The support for mixing executable code, equations, visualizations, and rich Markdown makes notebooks useful for breaking down new concepts in a story telling form. This makes notebooks an exceptional tool for educators and students!" [quote](https://code.visualstudio.com/docs/datascience/overview)
 
 Looks interesting: Python Interactive Window: https://code.visualstudio.com/docs/python/jupyter-support-py
+
+# Replace For-Loops with Matrix multiplications
+twitter comment by Greg Brockman (added to my bookmark, 15.5.2022)
+searched and found: https://medium.com/@aishahsofea/for-loops-vs-matrix-multiplication-ee67868f937
+make things much faster.
