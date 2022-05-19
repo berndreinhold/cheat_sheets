@@ -33,6 +33,7 @@ https://towardsdatascience.com/explaining-k-means-clustering-5298dc47bad6
 - PCA: Eigenvalues of data
 - t-SNE: T-distributed stochastic value embedding
 - [FeatureAgglomoration](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.FeatureAgglomeration.html#sklearn.cluster.FeatureAgglomeration)
+- PCA removes _linear_ correlations across features (https://scikit-learn.org/stable/modules/preprocessing.html)
 
 ### [DBSCAN](https://scikit-learn.org/stable/modules/clustering.html#dbscan)
 Areas of high density surrounded by areas of low density. 
@@ -49,7 +50,41 @@ A cluster is a set of core_samples that have neighbors as core_samples, who agai
 does not require the clusters to be convex and isotropic.
 
 ### hierarchical clustering
+
+## [data preprocessing](https://scikit-learn.org/stable/modules/preprocessing.html)
+- Standarization as a common requirement for ML estimators: approximately normal distributed
+- subtract mean and normalize by the variance
+- train_test_split()
+- make_pipeline(StandardScaler(), LogisticRegression())
+- RobustScaler(): when there are many outliers
+- Mapping to a Gaussian distribution (interesting. How to map it back?)
+- Encoding categorical features: preprocessing.OrdinalEncoder(encoded_missing_value= -1)
+
+### Normalization
+Normalization is the process of scaling individual samples to have unit norm.
+
+### Encoding categorical features
+- OrdinalEncoder()
+- OneHotEncoder()
+    - enc.categories_ - this illustrates the vector
+    - enc.transform()
+    - infrequent categories: group them into one - Arguments of OneHotEncoder()
+- Discretization: quantization or binning
+
+
+### [Generating polynomial features](https://scikit-learn.org/stable/modules/preprocessing.html#generating-polynomial-features)
+
+### Custom Transformers
+
+- ```from sklearn.preprocessing import FunctionTransformer```
+- something like an DataFrame::apply() with a lambda function
+
 ## Glossary
 - RANSAC: random sampling consensus - Zufallsstichprobe
 - Bottom-Up- and Top-Down-Approaches: Top is where one is, Bottom is where many are.
+- splines: piece-wise polynomials
+- [scikit-learn Glossary](https://scikit-learn.org/stable/glossary.html#glossary)
+- https://en.wikipedia.org/wiki/Duck_typing
 
+# Neural Networks
+see also [summary_Neural_Networks.md](summary_Neural_Networks.md)
