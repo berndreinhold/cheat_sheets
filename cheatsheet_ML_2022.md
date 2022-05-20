@@ -129,6 +129,52 @@ If they are correlated a better method is to train one model capable of predicti
 - works well with PCA or LDA
 - start with max_depth=3 as initial depth, look at the data, then increase the depth
 
+## [Ensemble Methods](https://scikit-learn.org/stable/modules/ensemble.html)
+In order to increase robustness and generalizability individual estimators can be combined to form a more powerful ensemble.
+
+There are two types of ensemble methods:
+1. averaging: The variance of the ensemble is reduced compared to each individual estimator's prediction (bagging methods, random forests)
+2. in boosting methods, base estimators are built sequentially with the goal to reduce the bias of the combined estimator. The motivation is to combine several weak models to produce a powerful ensemble (AdaBoost, Gradient Tree Boosting)
+
+### Bagging meta-estimator
+- several instances of a black-box estimator on random subsets of the original training set and then aggregate their predictions to form a final prediction.
+- reduce variance 
+- avoid overfitting
+- bagging methods work best with strong and complex models
+- in contrast with boosting methods which usually work best with weak models (e.g. shallow deicsion trees)
+- different bagging methods differ in the way they draw subsets of the training set.
+- BaggingRegressor() and BaggingClassifier()
+
+### Forests of randomized trees
+sklearn.ensemble knows two averaging algorithms based on randomized decision trees using perturb-and-combine techniques:
+- the RandomForest algorithm
+- the Extra-Trees method
+The prediction is the averaged prediction of the individual classifiers.
+Reduce variance through introducing randomness. Individual decision trees exhibit high variance and tend to overfit. The injected randomness in forests yield decision trees with somewhat decoupled prediction errors. By taking the average of many such trees, certain errors cancel out.
+
+#### Random Forests
+- RandomForestClassifier, RandomForestRegressor
+- two sources of randomness: random subsample draw and splitting
+    - each tree in the ensemble is built from a sample drawn with replacement
+    - when splitting each node during the construction of a tree, the best split is found either from all input features or a random subset of size max_features.
+- Random forests achieve a reduced variance by combining diverse trees, sometimes at the cost of a slight increase in bias.
+- look at most discriminative thresholds
+#### Extremely randomized trees
+... exist as well :)
+
+#### Parameters
+- n_estimators (the larger the better, but it takes longer to compute) and 
+- max_features (regression: max_features=1.0 down to 0.3, classification: max_features="sqrt")
+- results will stop getting significantly better beyond a critical number of trees.
+- (...)
+
+### Evaluation and Feature importance evaluation
+- based on out-of-bag samples: (oob_score=True)
+- the higher up in the tree, the more samples are affected
+- expected fraction of the samples as an estimate of the relative importance of the features.
+- feature_importances_
+
+
 ## Glossary
 - RANSAC: random sampling consensus - Zufallsstichprobe
 - Bottom-Up- and Top-Down-Approaches: Top is where one is, Bottom is where many are.
@@ -136,6 +182,7 @@ If they are correlated a better method is to train one model capable of predicti
 - [scikit-learn Glossary](https://scikit-learn.org/stable/glossary.html#glossary)
 - https://en.wikipedia.org/wiki/Duck_typing
 - Overfitting: describes the training data well, but does not generalize well to independent test datasets
+- [bias-variance decomposition](https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html): in regression the mean squared error can be decomposed in terms of bias, variance and noise.
 
 # Neural Networks
 see also [summary_Neural_Networks.md](summary_Neural_Networks.md)
