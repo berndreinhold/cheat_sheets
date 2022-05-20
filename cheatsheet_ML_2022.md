@@ -79,6 +79,12 @@ Normalization is the process of scaling individual samples to have unit norm.
 - ```from sklearn.preprocessing import FunctionTransformer```
 - something like an DataFrame::apply() with a lambda function
 
+## [Imputation](https://scikit-learn.org/stable/modules/impute.html)
+- most classifiers or regressors do not accept missing values
+- imputation is the process of filling in variables with values calculated under certain assumptions
+- [marking imputed values](https://scikit-learn.org/stable/modules/impute.html#marking-imputed-values)
+- [Univariate vs. multivariate imputation](https://scikit-learn.org/stable/modules/impute.html#univariate-vs-multivariate-imputation)
+
 ## Glossary
 - RANSAC: random sampling consensus - Zufallsstichprobe
 - Bottom-Up- and Top-Down-Approaches: Top is where one is, Bottom is where many are.
