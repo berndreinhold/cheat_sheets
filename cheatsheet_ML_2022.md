@@ -211,6 +211,33 @@ Reduce variance through introducing randomness. Individual decision trees exhibi
 - Sequential Feature Selection
 - Feature selection as part of a pipeline
 
+## [Semi-supervised learning](https://scikit-learn.org/stable/modules/semi_supervised.html)
+- Some of the training data is not labeled. The semi-supervised estimators in sklearn.semi_supervised are able to make use of this additional unlabeled data to better capture the shape of the underlying data distribution and generalize better to new samples.
+- Particularly suited in case of few labeled and much unlabeled data.
+- unlabeled entries in Y get a dedicated identifier along with the labeled data when training the model with the fit method.
+
+1. estimator trained in supervised way with labeled data
+2. use the classifier above to train it further in unsupervised fashion
+
+- SelfTrainingClassifier requires predict_proba()
+- in each iteration the classifier predicts labels for the unlabeled samples and adds a subset of these labels to the labeled dataset.
+
+### [Semi-supervised learning (Wikipedia)](https://en.wikipedia.org/wiki/Semi-supervised_learning#Assumptions)
+- falls between supervised and unsupervised.
+- special instance of weak supervision.
+- acquisition of unlabeled data is relatively inexpensive
+- transductive or inductive learning: The goal of transductive learning is to infer the correct labels for the given unlabeled data. The goal of inductive learning is to infer the correct mapping from input features to output targets.
+- in practice, algorithms formally desinged for transduction or induction are often used interchangeably.
+
+#### Assumptions
+Semi-supervised learning applies at least one of the following assumptions
+- continuity assumption: points that are close to each other are more likely to share a label. This is also a common assumption in supervised learning and gives rise to a simple decision boundary
+- cluster assumption: data tend to form clusters and points in the same cluster are more likely to share a label. But data with the same label could spread across different clusters.
+- manifold assumption: the data lie approximately on a manifold of much lower dimension than the input space. Learning can then proceed using distances and densities defined on the manifold.
+E.g. human voice is controlled by a few vocla folds and facial expressions are controlled by a few muscles. In these cases distances and smoothness in the manifold of the problem are much reduced compared to the full space of all possible acoustic waves or images of faces.
+
+
+
 
 ## Glossary
 - RANSAC: random sampling consensus - Zufallsstichprobe
@@ -219,8 +246,10 @@ Reduce variance through introducing randomness. Individual decision trees exhibi
 - [scikit-learn Glossary](https://scikit-learn.org/stable/glossary.html#glossary)
 - https://en.wikipedia.org/wiki/Duck_typing
 - Overfitting: describes the training data well, but does not generalize well to independent test datasets
+
+## Interesting AOB
 - [bias-variance decomposition](https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html): in regression the mean squared error can be decomposed in terms of bias, variance and noise.
 - Boolean features are Bernoulli random variables
-
+- [Kernel methods to project data into alternate dimensional spaces](https://scikit-learn.org/stable/modules/semi_supervised.html#label-propagation)
 # Neural Networks
 see also [summary_Neural_Networks.md](summary_Neural_Networks.md)
