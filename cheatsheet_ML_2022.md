@@ -174,6 +174,23 @@ Reduce variance through introducing randomness. Individual decision trees exhibi
 - expected fraction of the samples as an estimate of the relative importance of the features.
 - feature_importances_
 
+### AdaBoost
+- 1995 by Freund and Schapire
+- fit a sequence of weak learners on repeatedly modified versions of the data. (weak learners are models only weakly better than random guessing).
+- A weighted majority of these trees is then the overall prediction.
+- boosting iteration: calculate different weights to each training sample (initially 1/N)
+- weights of misclassified samples are increased, those of rightly classified samples are decreased. Thereby over the course of several iterations the misclassified samples gain ever more weight and the algorithm has to focus on them.
+
+#### Parameters
+- n_estimators (number of weak learners, e.g. 100)
+- max_depth: the depth of the base estimators
+
+### Gradient Tree Boosting
+- generalization of boosting to arbitrary differentiable loss functions.
+(...)
+### Histogram-Based Gradient Boosting
+(...)
+
 
 ## Glossary
 - RANSAC: random sampling consensus - Zufallsstichprobe
