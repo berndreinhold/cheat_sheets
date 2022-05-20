@@ -191,6 +191,26 @@ Reduce variance through introducing randomness. Individual decision trees exhibi
 ### Histogram-Based Gradient Boosting
 (...)
 
+## [Feature Selection](https://scikit-learn.org/stable/modules/feature_selection.html)
+- ```sklearn.feature_selection```
+### Removing features with low variance
+- VarianceThreshold
+- it requires the variance of one feature to go above a given threshold
+
+
+### Univariate feature selection
+- Univariate feature selection works by selecting the best features based on univariate statistical tests.
+- scikit-learn exposes feature selection routines as objects that implement the transform method. (why not select-method?)
+- SelectKBest(), SelectPercentile()
+- Warning: do not use regression scoing functions with a classification problem and vice versa.
+
+### Other methods
+- Recursive feature elimination
+- Feature selection using SelectFromModel
+    - e.g. a Tree-based feature selection
+- Sequential Feature Selection
+- Feature selection as part of a pipeline
+
 
 ## Glossary
 - RANSAC: random sampling consensus - Zufallsstichprobe
@@ -200,6 +220,7 @@ Reduce variance through introducing randomness. Individual decision trees exhibi
 - https://en.wikipedia.org/wiki/Duck_typing
 - Overfitting: describes the training data well, but does not generalize well to independent test datasets
 - [bias-variance decomposition](https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html): in regression the mean squared error can be decomposed in terms of bias, variance and noise.
+- Boolean features are Bernoulli random variables
 
 # Neural Networks
 see also [summary_Neural_Networks.md](summary_Neural_Networks.md)
