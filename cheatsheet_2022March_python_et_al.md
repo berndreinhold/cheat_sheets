@@ -45,6 +45,9 @@ _column of group by statement is odd_
 
     df_gb = df_gb.apply({'groupby_filename': lambda x: x.split(",")[0]})  # before df_gb has 4 columns, after this apply() only the groupby_filename column - why?
 
+    df["weather"].value_counts()  # somewhat similar to groupby-count statements.
+
+
 ## pandas dates:
     if self.df[ds]["date"].min() is not pd.NaT:
         self.min_date = min([self.df[ds]["date"].min(), self.min_date])
@@ -104,6 +107,25 @@ def get_the_right_value2(row, col_names : str):
 from process_test_datasets.py
 
 https://realpython.com/python-lambda/
+
+## time series
+https://scikit-learn.org/stable/auto_examples/applications/plot_cyclical_feature_engineering.html#sphx-glr-auto-examples-applications-plot-cyclical-feature-engineering-py
+
+```python
+from sklearn.model_selection import TimeSeriesSplit
+```
+
+### interesting Concluding remarks
+
+"We note that we could have obtained slightly better results for kernel models by using more components (higher rank kernel approximation) at the cost of longer fit and prediction durations. For large values of n_components, the performance of the one-hot encoded features would even match the spline features.
+
+The Nystroem + RidgeCV regressor could also have been replaced by MLPRegressor with one or two hidden layers and we would have obtained quite similar results.
+
+The dataset we used in this case study is sampled on a hourly basis. However cyclic spline-based features could model time-within-day or time-within-week very efficiently with finer-grained time resolutions (for instance with measurements taken every minute instead of every hours) without introducing more features. One-hot encoding time representations would not offer this flexibility.
+
+Finally, in this notebook we used RidgeCV because it is very efficient from a computational point of view. However, it models the target variable as a Gaussian random variable with constant variance. For positive regression problems, it is likely that using a Poisson or Gamma distribution would make more sense. This could be achieved by using GridSearchCV(TweedieRegressor(power=2), param_grid({"alpha": alphas})) instead of RidgeCV."
+from https://scikit-learn.org/stable/auto_examples/applications/plot_cyclical_feature_engineering.html#sphx-glr-auto-examples-applications-plot-cyclical-feature-engineering-py
+
 
 # python reduce()
 https://realpython.com/python-reduce-function/
@@ -355,3 +377,7 @@ Looks interesting: Python Interactive Window: https://code.visualstudio.com/docs
 twitter comment by Greg Brockman (added to my bookmark, 15.5.2022)
 searched and found: https://medium.com/@aishahsofea/for-loops-vs-matrix-multiplication-ee67868f937
 make things much faster.
+
+# Ubuntu
+## Ubuntu for IoT
+for Cloud and Services
