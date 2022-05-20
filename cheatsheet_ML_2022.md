@@ -85,12 +85,57 @@ Normalization is the process of scaling individual samples to have unit norm.
 - [marking imputed values](https://scikit-learn.org/stable/modules/impute.html#marking-imputed-values)
 - [Univariate vs. multivariate imputation](https://scikit-learn.org/stable/modules/impute.html#univariate-vs-multivariate-imputation)
 
+## Decision Trees
+- a supervised learning technique
+- for classification and regression
+- for tabular data, but also works for faces
+- a model that predicts the value of a target variable by learning
+- piecewise constant approximation
+- approximating a sin curve with piecewise constant parts (if-else conditions)
+
+### Advantages
+- trees can be visualized, easy to understand
+- numerical and categorical data
+- low data preparation requirements -> low threshold to run it.
+
+### Disadvantages
+- prone to overfitting, especially for big amounts of features
+- depending on details the tree can have very different shapes
+    - addressed via ensemble methods
+- needs a balanced dataset
+
+### Classification
+- class DecisionTreeClassifier: multi-class
+- methods:
+    - fit()
+    - predict()
+    - predict_proba()
+    - plot_tree()
+    - export_graphviz()
+
+### Multi-output problems
+a multi-output problem is a supervised learning problem with n-dimensional output with n>1. I.e. the output has dimension (n_samples, n_outputs).
+If there are no correlations between the outputs and the inputs leading to these outputs, one can train individual models for each 1-dimensional output and combine them in the end.
+
+If they are correlated a better method is to train one model capable of predicting simultaneously all n outputs.
+
+1. lower training time required to built only one estimator
+2. generalization power is often increased.
+
+### Regressor
+- class DecisionTreeRegressor
+
+### Practical Tips
+- works well with PCA or LDA
+- start with max_depth=3 as initial depth, look at the data, then increase the depth
+
 ## Glossary
 - RANSAC: random sampling consensus - Zufallsstichprobe
 - Bottom-Up- and Top-Down-Approaches: Top is where one is, Bottom is where many are.
 - splines: piece-wise polynomials
 - [scikit-learn Glossary](https://scikit-learn.org/stable/glossary.html#glossary)
 - https://en.wikipedia.org/wiki/Duck_typing
+- Overfitting: describes the training data well, but does not generalize well to independent test datasets
 
 # Neural Networks
 see also [summary_Neural_Networks.md](summary_Neural_Networks.md)
