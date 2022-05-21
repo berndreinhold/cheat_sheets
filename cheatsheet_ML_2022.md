@@ -31,9 +31,20 @@ https://towardsdatascience.com/explaining-k-means-clustering-5298dc47bad6
 
 ### dimensionality reduction: PCA, t-SNE
 - PCA: Eigenvalues of data
-- t-SNE: T-distributed stochastic value embedding
+- t-SNE: T-distributed stochastic neighbor embedding
 - [FeatureAgglomoration](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.FeatureAgglomeration.html#sklearn.cluster.FeatureAgglomeration)
 - PCA removes _linear_ correlations across features (https://scikit-learn.org/stable/modules/preprocessing.html)
+
+### t-SNE: t-distributed stochastic neighbor embedding
+- [Original paper](https://jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf)
+- A tool to visualize high-dimensional data.
+- random walk version of t-SNE
+- t-SNE reduces dimensionality mainly based on local structure of the data
+- not obvious how t-SNE performs for dimension d larger than 3, it is optimized for d=2 or 3
+- perform t-SNE on output of an autoencoder is likely to improve the quality of the visualizations.
+- many dimensionality reduction techniques have convex cost functions, but not t-SNE.
+
+
 
 ### [DBSCAN](https://scikit-learn.org/stable/modules/clustering.html#dbscan)
 Areas of high density surrounded by areas of low density. 
@@ -252,6 +263,66 @@ For instance, a well calibrated (binary) classifier should classify the samples 
 - [Beyond Sigmoids](https://projecteuclid.org/journals/electronic-journal-of-statistics/volume-11/issue-2/Beyond-sigmoids--How-to-obtain-well-calibrated-probabilities-from/10.1214/17-EJS1338SI.full)
 - [Predicting Good Probabilities With Supervised Learning](https://www.cs.cornell.edu/~alexn/papers/calibration.icml05.crc.rev3.pdf)
 
+## Neural network models (supervised)
+- scikit-learn offers no GPU support
+- any model estimation is sample-dependent (from [Neural Networks for regression and classification](https://github.com/joseDorronsoro/Neural-Networks-for-Regression-and-Classification/blob/master/notes_NN_regr_class_2021.pdf))
+### Multi-Layer Perceptron (MLP)
+- a supervised learning algorithm that learns a function f(R^m -> R^o) by training on a dataset, where m is the number of dimensions for input and o the number of output dimensions
+- either classification or regression
+- hidden layers
+- building blocks: neurons and arrows make the output of the previous layer the input for the current layer
+- weighted linear summation + biases followed by a non-linear activation function g(R -> R)
+- MLPClassifier, MLPRegressor (implements predict_proba())
+
+### Advantages
+- learn non-linear functions/models
+- learn models in real-time (online learning) using ```partial_fit```
+
+### Disadvantages
+- non-convex loss function with more than one local minimum
+- sensitive to feature scaling
+
+### Examples of activation functions
+- ReLU (Rectified Linear Unit) Activation function: $R(x) = max(0, x)$
+- sigmoid function $\frac{1}{(1 + e^{-x})}$
+- tanh is s-shaped like the sigmoid function (-1 to 1)
+- leaky ReLU: $R(x) = max(a*x, x)$ with 0 < a << 1
+- softmax function (last layer of a classifier): ratio of $\exp(i)/\sum_j(\exp(j)$ - for multiple classes
+
+### Linear Regression
+- no activation function in the output layer
+- continuous values in the output layer 
+- use square error as loss function to minimize the distance between $|y^2-y^{\hat}^2|$
+
+### Classification
+- Classifiers don't have a distance metric defined for the target classes, instead take the most probable label given the inputs x. Linear regression problems have such a distance metric and therefore the L2- or L1-distance can be used as a loss function.
+- interesting link: [Neural Networks for regression and classification](https://github.com/joseDorronsoro/Neural-Networks-for-Regression-and-Classification/blob/master/notes_NN_regr_class_2021.pdf)
+    - good probability estimates are useful
+    - concrete labels used for targets do not matter much
+    - model learning should thus be target-agnostic
+
+### Examples of loss functions
+- mean squared error (MSE)
+- y = f(x) can be:
+    - logistic loss function, mean squared error
+    - SVMs, Random Forest, decision trees, gradient boosted, nearest neighbor
+
+
+### Regularization
+
+### Complexity
+
+### Curse of dimensionality
+High dimensional spaces become quickly extremely sparsely populated, where the data of interest lives in a low dimensional manifold. Distance measures as loss function become numerically challenging.
+
+"As the dimensionality increases, the number of data points required for good performance of any machine learning algorithm increases exponentially. The reason is that, we would need more number of data points for any given combination of features, for any machine learning model to be valid."
+from: [curse of dimensionality](https://towardsdatascience.com/curse-of-dimensionality-a-curse-to-machine-learning-c122ee33bfeb)
+
+On distance: difference between min and max distance goes towards 0 for increasing dimensions. 
+
+## Model Evaluation
+$R^2 = 1- \frac{MSE}{Var(y)}$
+
 ## Projects related to scikit-learn
 - many projects listed
 - shortlist:
@@ -261,7 +332,7 @@ For instance, a well calibrated (binary) classifier should classify the samples 
     - sklearn-pandas: bridge for scikit-learn pipelines and pandas data frame with dedicated transformers
     - [scikit-lego](https://github.com/koaning/scikit-lego): custom transformers, metrics and models (industry focus)
     - [imbalanced-learn](https://github.com/scikit-learn-contrib/imbalanced-learn): various methods to under- and over-sample datasets
-    
+
 ## Glossary
 - RANSAC: random sampling consensus - Zufallsstichprobe
 - Bottom-Up- and Top-Down-Approaches: Top is where one is, Bottom is where many are.
@@ -269,11 +340,23 @@ For instance, a well calibrated (binary) classifier should classify the samples 
 - [scikit-learn Glossary](https://scikit-learn.org/stable/glossary.html#glossary)
 - https://en.wikipedia.org/wiki/Duck_typing
 - Overfitting: describes the training data well, but does not generalize well to independent test datasets
+- Regression: 
+    - _regress_ y back into the input feature vector x
+    - there is the overloaded meaning: logistic regression (classification) and linear regression (to refer to both as in the formulation above) or: (linear) regression vs. classification (to distinguish the two)
 
 ## Interesting AOB
 - [bias-variance decomposition](https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html): in regression the mean squared error can be decomposed in terms of bias, variance and noise.
 - Boolean features are Bernoulli random variables
 - [Kernel methods to project data into alternate dimensional spaces](https://scikit-learn.org/stable/modules/semi_supervised.html#label-propagation)
+- [ADAM optimizer](https://arxiv.org/pdf/1412.6980.pdf) by Kingma, Ba
+
+### Recognizing Overfitting
+- decision boundary plot has strong curvatures
+- learning curve of training dataset is small, learning curve of test dataset is big
+- [high variance](https://scikit-learn.org/stable/auto_examples/neural_networks/plot_mlp_alpha.html#varying-regularization-in-multi-layer-perceptron)
 
 # Neural Networks
 see also [summary_Neural_Networks.md](summary_Neural_Networks.md)
+
+
+
