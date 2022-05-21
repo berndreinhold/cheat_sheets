@@ -234,11 +234,34 @@ Semi-supervised learning applies at least one of the following assumptions
 - continuity assumption: points that are close to each other are more likely to share a label. This is also a common assumption in supervised learning and gives rise to a simple decision boundary
 - cluster assumption: data tend to form clusters and points in the same cluster are more likely to share a label. But data with the same label could spread across different clusters.
 - manifold assumption: the data lie approximately on a manifold of much lower dimension than the input space. Learning can then proceed using distances and densities defined on the manifold.
-E.g. human voice is controlled by a few vocla folds and facial expressions are controlled by a few muscles. In these cases distances and smoothness in the manifold of the problem are much reduced compared to the full space of all possible acoustic waves or images of faces.
+E.g. human voice is controlled by a few vocal folds and facial expressions are controlled by a few muscles. In these cases distances and smoothness in the manifold of the problem are much reduced compared to the full space of all possible acoustic waves or images of faces.
 
+#### Further Reading
+[Efficient Non-Parametric Function Induction in Semi-Supervised Learning](http://nicolas.le-roux.name/publications/Delalleau05_ssl.pdf)
 
+## [Probability Calibration](https://scikit-learn.org/stable/modules/calibration.html)
+- predict class label with a probability
+- not all estimators provide a probability
+- "Well calibrated classifiers are probabilistic classifiers for which the output of the predict_proba() method can be directly interpreted as a confidence level.
+For instance, a well calibrated (binary) classifier should classify the samples such that among the samples to which it gave a predict_proba value close to 0.8, approximately 80 % actually belong to the positive class." (statistical interpretation)
+### Calibration Curves
+- calibration curves (aka reliability diagrams) for a binary classifier
+- CalibratedClassifierCV
 
+#### Further Reading
+- [Beyond Sigmoids](https://projecteuclid.org/journals/electronic-journal-of-statistics/volume-11/issue-2/Beyond-sigmoids--How-to-obtain-well-calibrated-probabilities-from/10.1214/17-EJS1338SI.full)
+- [Predicting Good Probabilities With Supervised Learning](https://www.cs.cornell.edu/~alexn/papers/calibration.icml05.crc.rev3.pdf)
 
+## Projects related to scikit-learn
+- many projects listed
+- shortlist:
+    - seaborn: matplotlib based library for attractive plotting
+    - Keras: high-level API for TensorFlow with a scikit-learn inspired API
+    - dtreeviz: a python library for decision tree visualization and model interpretation
+    - sklearn-pandas: bridge for scikit-learn pipelines and pandas data frame with dedicated transformers
+    - [scikit-lego](https://github.com/koaning/scikit-lego): custom transformers, metrics and models (industry focus)
+    - [imbalanced-learn](https://github.com/scikit-learn-contrib/imbalanced-learn): various methods to under- and over-sample datasets
+    
 ## Glossary
 - RANSAC: random sampling consensus - Zufallsstichprobe
 - Bottom-Up- and Top-Down-Approaches: Top is where one is, Bottom is where many are.
@@ -251,5 +274,6 @@ E.g. human voice is controlled by a few vocla folds and facial expressions are c
 - [bias-variance decomposition](https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html): in regression the mean squared error can be decomposed in terms of bias, variance and noise.
 - Boolean features are Bernoulli random variables
 - [Kernel methods to project data into alternate dimensional spaces](https://scikit-learn.org/stable/modules/semi_supervised.html#label-propagation)
+
 # Neural Networks
 see also [summary_Neural_Networks.md](summary_Neural_Networks.md)
