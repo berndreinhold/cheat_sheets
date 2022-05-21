@@ -333,6 +333,15 @@ $R^2 = 1- \frac{MSE}{Var(y)}$
     - [scikit-lego](https://github.com/koaning/scikit-lego): custom transformers, metrics and models (industry focus)
     - [imbalanced-learn](https://github.com/scikit-learn-contrib/imbalanced-learn): various methods to under- and over-sample datasets
 
+### Recognizing Overfitting
+- decision boundary plot has strong curvatures
+- learning curve of training dataset is small, learning curve of test dataset is big
+- [high variance](https://scikit-learn.org/stable/auto_examples/neural_networks/plot_mlp_alpha.html#varying-regularization-in-multi-layer-perceptron)
+
+# Neural Networks
+see also [summary_Neural_Networks.md](summary_Neural_Networks.md)
+
+
 ## Glossary
 - RANSAC: random sampling consensus - Zufallsstichprobe
 - Bottom-Up- and Top-Down-Approaches: Top is where one is, Bottom is where many are.
@@ -349,14 +358,3 @@ $R^2 = 1- \frac{MSE}{Var(y)}$
 - Boolean features are Bernoulli random variables
 - [Kernel methods to project data into alternate dimensional spaces](https://scikit-learn.org/stable/modules/semi_supervised.html#label-propagation)
 - [ADAM optimizer](https://arxiv.org/pdf/1412.6980.pdf) by Kingma, Ba
-
-### Recognizing Overfitting
-- decision boundary plot has strong curvatures
-- learning curve of training dataset is small, learning curve of test dataset is big
-- [high variance](https://scikit-learn.org/stable/auto_examples/neural_networks/plot_mlp_alpha.html#varying-regularization-in-multi-layer-perceptron)
-
-# Neural Networks
-see also [summary_Neural_Networks.md](summary_Neural_Networks.md)
-
-
-
