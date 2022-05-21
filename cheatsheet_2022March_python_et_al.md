@@ -179,6 +179,12 @@ os.makedirs(path, exist_ok=True)
 https://docs.python.org/3/howto/logging.html#configuring-logging-for-a-library
 https://stackoverflow.com/questions/50391429/logging-in-classes-python
 
+## built-in functions
+- https://docs.python.org/3/library/functions.html#hasattr
+Interesting list of built-in functions, with a focus on hasattr()
+- hasattr() allows to check, if a certain function is implemented.
+- getattr() call a function: `s = getattr(clf, method)(X[-3:])`
+- [nice example](https://gist.github.com/jnothman/4807b1b0266613c20ba4d1f88d0f8cf5)
 
 ## performance python code classes
 turned code into classes and following that the garbage collection seemed not to work as well anymore. Ran into memory issues with the programs.
@@ -381,3 +387,8 @@ make things much faster.
 # Ubuntu
 ## Ubuntu for IoT
 for Cloud and Services
+
+# Development Guidelines
+- Flake8: [PEP-8](https://peps.python.org/pep-0008/)
+- [The Zen of Python](https://peps.python.org/pep-0020/): ```import this```
+- [scikit-learn Developer's Guide](https://scikit-learn.org/stable/developers/)
