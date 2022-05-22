@@ -97,3 +97,43 @@ shipping a model:
 - error analysis
 
 # Glossary
+
+# LSTM
+Brandon Rohrer, 2017: Recurrent Neural Networks (RNN) and Long Short-Term Memory (LSTM)
+
+- Forgetting/memory (with gate)
+- ignoring (with gate)
+- selection (with gate)
+
+squashing functions: sigmoid (0,1) or tanh (-1,1)
+
+children book: Jane saw Spot
+
+RNN: can look back a few time steps
+LSTM: can look back much longer
+
+Text translation: phrase to phrase or sentence to sentence translation
+Robotics: agent taking in information, decision, action (LSTM looks )
+
+# Example Networks and Architectures
+## AlexNet
+- Tremendous improvement on ImageNet competition in 2012
+
+
+# Artificial General Intelligence (AGI)
+- https://en.wikipedia.org/wiki/Artificial_general_intelligence
+- AGI is the ability of an intelligent agent to understand or learn any intellectual task that a human being can.
+- strong AI: machine showing traits of consciousness and sentience (feelings and sensation)
+
+## Tests
+- Turing Test: conversation between test human and machine and human, the test human has to decide whether a machine is involved
+- The Coffee Test (Wozniak): a machine has to enter an average American home and figure out how to make coffee: find the coffee machine, the water, a mug, brew coffee (and drink it)
+- robot college student test (Goertzel): a machine applies to colleague, participates in the coarses and gets a degree
+- employment test (Nilsson): a machine performs an economically important job at least as well as humans in the same job
+
+## Trivia
+- Ben Goertzel: "achieving complex goals in complex environments"
+- Animal Tests: Animal Olympiad for AI
+- AI hard
+
+
