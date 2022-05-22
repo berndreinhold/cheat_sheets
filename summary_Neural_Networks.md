@@ -1,3 +1,5 @@
+_These notes are personal and do not abide to common scientific standards. Sentences and paragraphs may have been rewritten word by word without proper citation. (I memorize while (re)writing)_
+
 # Neural Networks
 ## Notes from CS230 @Stanford (Youtube)
 ### lecture 1
@@ -136,4 +138,83 @@ Robotics: agent taking in information, decision, action (LSTM looks )
 - Animal Tests: Animal Olympiad for AI
 - AI hard
 
+# Deep Learning
+by Ian Goodfellow, Yoshua Bengio, Aaron Courville
 
+### 5.2 Capacity, Overfitting and Underfitting
+"What separates machine learning from optimization is that we want the generalization error, also called the test error, to be low as well. The generalization error is defined as the expected value of the error" on previously unseen input.
+
+Capacity: set of functions allowed in the algorithms hypothesis psace
+
+Error vs. Capacity
+Underfitting (low capacity): test and training error are both big
+Overfitting (high capacity): training error decreases, but test error increases and a generalization gap appears that is widening with further increasing capacity.
+
+#### 5.2.1 No Free Lunch Theorem
+We must train on specific tasks, relevant in real world settings, because a general learning algorithm won't generalize well. (Note to self: Hmmm, that's too short a summary and probably missing the point)
+#### 5.2.2 Regularization
+The focus on a specific task opens possibilities to tune the learning algorithm with additional constraints that help generalization.
+One can give preferences to certain solutions in the space of hypothesis and parameters.
+
+Regularization examples:
+- weight decay: a term in the loss function preferring small weights
+- many others, see chapter 7 :)
+
+"Regularization is any modification we make to a learning algorithm that is intended to reduce its genearlization error but not its training error. Regularization is one of the central concerns of the field of machine learning, rivaled in its importance only by optimization."
+
+#### 5.7.2 Support Vector Machines
+kernel trick :)
+The kernel-based function is exactly equivalent to preprocessing the data by applying $phi(x)$ to all inputs, then learning a linear model in the new transformed space.
+## 7 Regularization for Deep Learning
+Strategies designed to reduce the test error even if at the cost of a higher training error are called regularization.
+Many kinds of regularizations have been developed:
+- additional components in the loss (aka cost) function, e.g. parameter norm penalties
+- these additional components can add prior knowledge or preferences to the loss function
+- ensemble methods are also a kind of regularization
+- in the context of deep learning there is a focus on regularizing estimators. Regularization of estimators works by trading increased bias for reduced variance
+
+### 7.1 Parameter Norm Penalties
+- for neural networks a norm penalty is used that addresses only the weights of the affine transformations at each layer, but not their biases.
+- experience shows that regularizing the biases can introduce underfitting
+
+### 7.3 Regularization and Under-Constrained Problems
+many linear models in ML rely on inverting $X^T\cdot X$, which is only possible, if X is not singular.
+
+### 7.4 Dataset Augmentation
+- Train a model on more data by generating fake data. For some ML problems it is reasonably easy to produce fake data.
+- Easy example: classifiers
+- not so easy: difficult for problems trying to perform density estimations. Creating new fake data relies on knowing the underlying density estimation.
+- easy: shifts or rotations of images used for object detection
+- hard: out-of-plane rotations
+- works well for speech recognition tasks
+- injecting noise
+
+But: neural networks turn out to be not very robust to noise. ($\righarrow$ Adversary attacks)
+
+- dropout: a powerful regularization strategy can be seen as a process of constructing new inputs by multiplying by noise
+
+### 7.5 Noise Robustness
+- adding noise to the weights
+- noise also added to deeper layers (different layers of abstraction)
+
+### 7.9 Parameter Tying and Parameter Sharing
+- link two weight distribution via a regularization term in the loss function or
+- enforce sharing of parameters
+- much reduced memory footprint, e.g. in convolutional neural networks
+
+#### 7.9.1 Convolutional Neural Networks
+"By far the most popular and extensive use of parameter sharing occurs in convolutional neural networks (CNNs) applied to computer vision.
+Natural images have many statistical properties that are invariant to translation.
+"
+invariance to translation
+see chapter 9 for a deeper discussion
+
+### 7.11 Bagging and Other Ensemble Methods
+Bagging: bootstrap aggregating
+
+benchmark comparisons in scientific papers are done on single models.
+In real life averages of dozens of models outperform single models.
+
+### 7.12 Dropout
+"Dropout provides a computationally inexpensive but powerful method of regularizing a broad family of models."
+"It trains an ensemble of all subnetworks that can be constructed by removing nonoutput units from an underlying base network."
