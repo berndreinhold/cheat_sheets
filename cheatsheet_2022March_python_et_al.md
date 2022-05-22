@@ -23,6 +23,11 @@ _column of group by statement is odd_
     test = test.loc[test["filenames"].apply(lambda a: '"' in str(a))]
     print(test["filenames"].apply(lambda a: '"' in str(a)))
 
+## pandas pipe
+- _looks very cool_
+- https://towardsdatascience.com/the-unreasonable-effectiveness-of-method-chaining-in-pandas-15c2109e3c69
+- https://tomaugspurger.github.io/method-chaining  has also some very nice visualisation calls
+
 ## pandas dataframe
 - has no attribute unique(): df.unique(), but pd.Series has a unique()-function
 - dataframe.drop_duplicates()
