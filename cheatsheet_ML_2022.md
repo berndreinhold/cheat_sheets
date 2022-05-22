@@ -309,8 +309,10 @@ For instance, a well calibrated (binary) classifier should classify the samples 
 
 
 ### Regularization
+See [7 regularization for deep learning](summary_Neural_Networks.md#7-regularization-for-deep-learning)
 
 ### Complexity
+For a training set of size n, split into several batches of size b, m features, k hidden layers, each containing h neurons and o output neurons. The time complexity of backpropagation is $O(b\cdot m\cdot h^k\cdot o\cdot i)$, where i is the number of iterations.
 
 ### Curse of dimensionality
 High dimensional spaces become quickly extremely sparsely populated, where the data of interest lives in a low dimensional manifold. Distance measures as loss function become numerically challenging.
@@ -462,3 +464,9 @@ By default, parameter search uses the score function of the estimator to evaluat
 - MLPerf of MLcommons.org (referenced above)
 - Distributed Shampoo: a scalable second order optimization method for deep learning
 - wandb.ai: weights and biases
+- iid aka i.i.d.: independent and identically distributed
+- [epoch vs. iteration](https://stackoverflow.com/questions/4752626/epoch-vs-iteration-when-training-neural-networks): 
+    - "in neural network terminology:
+        - one epoch: one forward pass and one backward pass of all the training examples
+        - batch size: number of training examples in one forward/backward pass
+        - number of iterations: number of passes, each pass using [batch size] number of examples."
