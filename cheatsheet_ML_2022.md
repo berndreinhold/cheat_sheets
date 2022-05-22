@@ -283,9 +283,9 @@ For instance, a well calibrated (binary) classifier should classify the samples 
 - sensitive to feature scaling
 
 ### Examples of activation functions
-- ReLU (Rectified Linear Unit) Activation function: $R(x) = max(0, x)$
 - sigmoid function $\frac{1}{(1 + e^{-x})}$
 - tanh is s-shaped like the sigmoid function (-1 to 1)
+- ReLU (Rectified Linear Unit) Activation function: $R(x) = max(0, x)$: non-saturating ReLU activation function, it shows improved training performance over tanh and sigmoid.
 - leaky ReLU: $R(x) = max(a*x, x)$ with 0 < a << 1
 - softmax function (last layer of a classifier): ratio of $\exp(i)/\sum_j(\exp(j)$ - for multiple classes
 
@@ -320,8 +320,6 @@ from: [curse of dimensionality](https://towardsdatascience.com/curse-of-dimensio
 
 On distance: difference between min and max distance goes towards 0 for increasing dimensions. 
 
-## Model Evaluation
-$R^2 = 1- \frac{MSE}{Var(y)}$
 
 ## Projects related to scikit-learn
 - many projects listed
@@ -338,9 +336,105 @@ $R^2 = 1- \frac{MSE}{Var(y)}$
 - learning curve of training dataset is small, learning curve of test dataset is big
 - [high variance](https://scikit-learn.org/stable/auto_examples/neural_networks/plot_mlp_alpha.html#varying-regularization-in-multi-layer-perceptron)
 
-# Neural Networks
+## Neural Networks
 see also [summary_Neural_Networks.md](summary_Neural_Networks.md)
 
+
+## [Model selection and evaluation](https://scikit-learn.org/stable/model_selection.html)
+### Cross Validation: evaluating estimator performance
+- machine learning "experiment"
+- cross validation workflow in model training: the best (hyper-)parameters can be determined by grid search techniques
+- ```from sklearn.model_selection import train_test_split```
+- 3 datasets:
+    - training set
+    - validation set to find hyper parameters
+    - final evaluation on test set
+- downside: much reduced data for training
+- solution: k-fold cross validation (CV)
+    - split the data into k parts
+    - train on k-1 parts
+    - optimize parameter on the k-th part
+- ```from sklearn.model_selection import cross_val_score```
+- ```from sklearn.model_selection import cross_validate```
+    - allows specifying multiple metrics for evaluation
+    - returns a dict containing fit-times, score-times (and optionally training scores as well as fitted estimators) in addition to the test score.
+    - scoring parameter: precision_macro, recall_macro
+
+### Obtaining predictions by cross-validation
+### Cross validation iterators
+Assumption: independent and identically distributed: assumption that all samples are drawn from the same underlying distribution and there is no hysteresis while generating from this distribution.
+
+#### Alternatives:
+- time-series aware cross-validation scheme
+- group-wise cross-validation
+
+### Cross validation iterators for grouped data
+- several samples from the same patient form one group
+- could be interesting for the OPEN diabetes project
+
+### [Cross validation iterators for time series data]
+Time series data is characterized by the correlation between observations that are near in time (autocorrelation). Classical CV techniques assume that the samples are independent and identically distributed, and would result in unreasonable correlation between training and testing instances.
+
+```TimeSeriesSplit```
+
+### Cross validation and model selection
+### Permutation test score
+Shuffle labels Y wrt the input X of left out data, thereby removing any dependency between the features and the labels.
+The p-value is hte fraction of permutations for which the average cross-validation score obtained by the model is better than the cross-validation score obtained by the model using the original data.
+
+A low p-value provides evidence that the dataset contains real dependency between features and labels and that the classifier manages to represent this dependency.
+
+It is important to note that this test has been shown to produce low p-values even if there is only weak structure in the data because in the corresponding permutated datasets here is absolutely no structure.
+
+### Tuning the hyper-parameters of an estimator
+- hyper-parameters are parameters that are not optimized within the estimator. In scikit-learn they are passed as arguments to the constructor of the estimator classes.
+ search the hyper-parameter space for the best CV scores.
+- any parameter provided to the estimator's constructor may be optimized in this manner.
+- ```estimator.get_params()```
+
+#### Two generic approaches:
+- GridSearchCV
+- RandomizedSearchCV
+- HalvingGridSearchCV
+- HalvingRandomSearchCV
+
+\[...\] much more detail is possible. Left out for now (May 22, 2022)
+
+### Tips for parameter search
+#### Specifying an objective metric
+By default, parameter search uses the score function of the estimator to evaluate a parameter setting:
+- For classification: ```sklearn.metrics.accuracy_score```
+- for linear regression: ```sklearn.metrics.r2_score```
+
+### Alternative to brute force parameter search
+- ```linear_model.ElasticNetCV``` and other ```linear_model.*CV```
+- Out of bag estimates
+
+### Metrics and scoring: quantifying the quality of predictions
+#### score examples
+
+- f1-score: harmonic mean of precision and recall (two element classification)
+- accuracy: on-diagonal elements (two element classification)
+
+### classification metrics
+- loss, score and utility functions to measure classification performance.
+- precision_recall_curve: compute precision-recall pairs for different probability thresholds.
+- roc_curve: compute receiver operating characteristic (ROC)
+- confusion_matrix: generalization of the binary TP,FP,FN,TN-Matrix, comes with ConfusionMatrixDisplay
+- f1_score: (see above)
+- accuracy_score: (see above)
+- top-k accuracy_score: generalization of accuracy_score: for images
+- _beware of imbalanced datasets_
+- classification_report: very call summary including precision, recall, F1, others
+
+### Precision, recall and F-measures
+- $F_beta$: a generalization of F1 (F1: beta=1), changing the relative weight of precision and recall
+- value range: [0, 1]
+
+### Log Loss
+- log loss, logistic regression loss or cross-entropy loss
+- commonly used in (multinomial) logistic regression and neural networks 
+- predict_proba()
 
 ## Glossary
 - RANSAC: random sampling consensus - Zufallsstichprobe
@@ -352,9 +446,19 @@ see also [summary_Neural_Networks.md](summary_Neural_Networks.md)
 - Regression: 
     - _regress_ y back into the input feature vector x
     - there is the overloaded meaning: logistic regression (classification) and linear regression (to refer to both as in the formulation above) or: (linear) regression vs. classification (to distinguish the two)
-
+- Model Evaluation: $R^2 = 1 - \frac{MSE}{Var(y)}$
+- '[cross validation](https://en.wikipedia.org/wiki/Cross-validation_(statistics))' aka 'rotation estimation' or 'out-of-sample testing'
 ## Interesting AOB
 - [bias-variance decomposition](https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html): in regression the mean squared error can be decomposed in terms of bias, variance and noise.
 - Boolean features are Bernoulli random variables
 - [Kernel methods to project data into alternate dimensional spaces](https://scikit-learn.org/stable/modules/semi_supervised.html#label-propagation)
 - [ADAM optimizer](https://arxiv.org/pdf/1412.6980.pdf) by Kingma, Ba
+- Spikes during training
+    - twitter thread with Jeremy Howard, May 22, 2022
+    - leads to many dead areas: large gradient, strong negative weights, ReLU goes negative, gradient 0, does not recover
+    - solution: go back to an earlier checkpoint, skip some batches
+    - is it the positive or negative side of the spike that leads to these negative weights?
+    - see learner.activation_stats.color_dim
+- MLPerf of MLcommons.org (referenced above)
+- Distributed Shampoo: a scalable second order optimization method for deep learning
+- wandb.ai: weights and biases
