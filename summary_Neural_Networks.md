@@ -278,3 +278,74 @@ In real life averages of dozens of models outperform single models.
 ### 7.12 Dropout
 "Dropout provides a computationally inexpensive but powerful method of regularizing a broad family of models."
 "It trains an ensemble of all subnetworks that can be constructed by removing nonoutput units from an underlying base network."
+
+## 9 Convolutional Neural Networks
+- specialized kind of neural network for processing data that has a known grid-like topology.
+- "Examples include time-series data, which can be thought of as a 1-D grid taking samples at regular time intervals, and image data, which can be thought of as a 2D grid of pixels. CNNs have been tremendously successful in practical applications."
+- "Convolutional networks are simply neural networks that use convolution in place of general matrix multiplication in at least one of their layers."
+- "Convolution is a specialized kind of linear operation."
+- describe convolution, and the motivation behind.
+- pooling, which almost all convolutional networks employ.
+- different variants of convolution operation that are widely used in practice for neural networks
+- "We also show how convolution may be applied to many kinds of data, with different numbers of dimensions."
+- "Convolutional networks stand out as an example of neuroscientific principles influencing deep learning."
+- rapid evolution of architectures
+- "The best architectures have been consistently been composed of the building blocks described here."
+
+### 9.1 The Convolution Operation
+- input x kernel, where the kernel needs to be a probability density function. "The output is sometimes referred to as the *feature map*"
+- $s(t) = (x \star w)(t) = sum_{a=-\infinity} x(a)\cdot w(t-a)$
+- "In machine learning applications, the input is usually a multidimensional array of data, and the kernel is usually a multidimensional array of parameters that are adapted by the learning algorithm. We will refer to these multidimensional arrays as tensors."
+- "Finally, we often use convolutions over more than one axis at a time. For example, if we use a two-dimensional image I as our input, we probably also want to use a two-dimensional kernel K."
+- "Convolution is commutative."
+- "Instead, many neural network libraries implement a related function called the cross-correlation, which is the same as convolution but without flipping the kernel."
+- "Many machine learning libraries implement cross-correlation, but call it convolution."
+- "discrete convolution can be viewed as multiplication by a matrix"
+- the important part is the learning of kernels during the training.
+
+### 9.2 Motivation
+- "convolution leverages three important ideas that can help improve a machine learning systeem: sparse interactions, parameter sharing and equivariant representations.
+- "convolution is an extremley efficient way of describing transformations that apply the same linear transformation of a small local region across the entire input."
+- much less parameters compared to full matrix multiplication.
+- "equivariance to translation": "To say a function is equivariant means that if the input changes, the output chagnes in the same way."
+- "when processing time-series data, this means that convolution produces a sort of timeline that shows when different features appear in the input."
+- "similarly with images, convolution creates a 2-D map of where certain features appear in the input. If we move the object in the input, its representation will move the same amount in the output."
+- edge detection: share parameters of this edge detection across images
+
+### 9.3 Pooling
+- a typical layer of a convolutional network consists of three stages:
+    - convolutional stage: affine transform
+    - detector stage: nonlinearity, e.g. rectified linear
+    - pooling stage
+- max pooling operation reports the maximum output within a rectangular neighborhood
+- other popular pooling operations: average of a rectangular neighborhood, L2 norm or weighted average based on the distance from the central pixel
+- "pooling helps to make the representation approximately invariant to small translations of the input. Invariance to translation means that if we translate the input by a small amount, the values of most of the pooled outputs do not change"
+- improve statistical efficiency of the network
+- pooling over spatial regions produces invariance to translation, but if we pool over the outputs of separately parametrized convolutions, the features can learn which transformations to become invarinat to. 
+- improves the computational efficiency of the network because the next layer has roughly k times fewer inputs to process.
+- for many tasks pooling is essential for handling inputs of varying size 
+- "some theoretical work gives guidance as to which kinds of pooling one should use in various situations (Boureau et al., 2010). It is also possible to dynamically pool features together, for example, by running a clustering algorithm on the locations of interesting features."
+
+### 9.4 Convolution and Pooling as an Infinitely Strong Prior
+- "Recall the concept of a prior probability distribution from section 5.2. This is a probability distribution over the parameters of a model that encodes our beliefs aoubt what models are reasonable, before we have seen any data. Priors can be considered weak or strong depending on how concentrated the probability density in the prior is. A weak prior allows the data to move the parameters more or less freely."
+- "We can imagine a convolutional net as being similar to a fully connected net, but with an infinitely strong prior over its weights. This prior says that the function the layer should learn contains only local interactions and is equivariant to translation. Likewise, the use of pooling is an infinitely strong prior tath each unit should be invariant to small translations."
+- "one key insight is that convolution and pooling can cause underfitting."
+- "when a task involves incorporating information from very distant locations in the input, then the prior imposed by convolution may be inappropriate." 
+
+### 9.5 Variants of the Basic Convolution Function
+"One convolution with a single kernel can extract only one kind of feature, albeit at many spatial locations."
+
+### 9.8 Efficient Convolution Algorithms
+- "Convolution is equivalent to converting both the input and the kernel to the frequency domain using a Fourier transform, performing point-wise multiplication of the two signals and converting back to the time domain using an inverse Fourier transform. For some problem sizes, this can be faster than the naive implementation of discrete convolution."
+
+### 9.9 Random or Unsupervised Features
+- "Typically, the most expensive part of convolutional network training is learning the features. The output layer is relatively inexpensive because of the small number of features provided as input to this layer after passing through several layers of pooling."
+- "When performing supervised training with gradient descent, every gradient step requires a complete run of forward propagation and backward propagation through the entire network. One way to reduce th cost of convolutional network training is to use fatures that are not trained in a supervised fashion."
+- "Random filters often work surprisingly well in convolutional networks."
+- "we can use the parameters frm this patch-based model to define the kernels of a convolutional layer. This means that it is possible to use unsupervised learning to train a convolutionalnetwork weithout ever using convolution during the training process."
+- "Today, most convolutional networks are trained in a purely supervised fashion, using full forward and back-propagation through the entire networ on each trainig iteration."
+
+### 9.10 The Neuroscientific Basis for Convolutional Networks
+- "Convolutional networks are perhaps the greatest success story of biologically inspired artificial intelligence. Though convolutional networks have been guided by many other fields, some of the key design principles of neural networks were drawn from neuroscience."
+- "recordings of the individual neurons in cats"
+- "They observed how neurons in the cat's brain
