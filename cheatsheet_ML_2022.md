@@ -432,6 +432,13 @@ By default, parameter search uses the score function of the estimator to evaluat
 ### Precision, recall and F-measures
 - $F_beta$: a generalization of F1 (F1: beta=1), changing the relative weight of precision and recall
 - value range: [0, 1]
+- precision, recall, F1-score can be calculated per class
+
+### ROC - Receiver Operating Characteristic
+- from https://towardsdatascience.com/handling-imbalanced-datasets-in-machine-learning-7a0e84220f28
+- assumption: we have a model that provides a probability that a certain point belongs to C: $P(C | x)$. Based on this probability function one can calculate a isoline where the probability is equal to a certain threshold T: $P(C | x) \geq T$. 
+- good model: one does not have to sacrifice a lot in precision in order to get high recall.
+- 
 
 ### Log Loss
 - log loss, logistic regression loss or cross-entropy loss
@@ -450,6 +457,7 @@ By default, parameter search uses the score function of the estimator to evaluat
     - there is the overloaded meaning: logistic regression (classification) and linear regression (to refer to both as in the formulation above) or: (linear) regression vs. classification (to distinguish the two)
 - Model Evaluation: $R^2 = 1 - \frac{MSE}{Var(y)}$
 - '[cross validation](https://en.wikipedia.org/wiki/Cross-validation_(statistics))' aka 'rotation estimation' or 'out-of-sample testing'
+- RBF: radial basis function: $\sum \exp(-|W - X|)$ - difficult to optimize as it saturates to 0 for most x (Goodfellow, DL)
 ## Interesting AOB
 - [bias-variance decomposition](https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html): in regression the mean squared error can be decomposed in terms of bias, variance and noise.
 - Boolean features are Bernoulli random variables
@@ -470,3 +478,14 @@ By default, parameter search uses the score function of the estimator to evaluat
         - one epoch: one forward pass and one backward pass of all the training examples
         - batch size: number of training examples in one forward/backward pass
         - number of iterations: number of passes, each pass using [batch size] number of examples."
+- Carsten K., May 2022: "egal welches Framework Du verwendest, die Netzwerkbeschreibung wird mit Keras gemacht. Das läuft bei mir alles unter Tensorflow"
+- having an idea vs. popularizing it: https://medium.com/syncedreview/who-invented-backpropagation-hinton-says-he-didnt-but-his-work-made-it-popular-e0854504d6d1
+
+## Book Recommendations
+- Twitter feed (Chris Albon, Mai 22, 2022)
+- "What are the best ML books to come out in the last three years? They can be code-focused, theory-focused, whatever, but they have to be books"
+- Deep Learning with Python
+- Machine Learning Design Patterns: Solutions to Common Challenges in Data Preparation, Model Building and MLOps (Google Cloud centric, Valliappa Lakshmanan, Sara Robinson & Michael Munn)
+- Natural Language Processing with Transformers: Building Language Applications with Hugging Face
+- Designing Machine Learning Systems: An Iterative Process for Production Ready Applications (Chip Huyen)
+- Python: Data Science Handbook
