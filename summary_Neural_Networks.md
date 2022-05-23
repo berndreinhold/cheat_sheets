@@ -160,7 +160,7 @@ Regularization examples:
 - weight decay: a term in the loss function preferring small weights
 - many others, see chapter 7 :)
 
-"Regularization is any modification we make to a learning algorithm that is intended to reduce its genearlization error but not its training error. Regularization is one of the central concerns of the field of machine learning, rivaled in its importance only by optimization."
+"Regularization is any modification we make to a learning algorithm that is intended to reduce its generalization error but not its training error. Regularization is one of the central concerns of the field of machine learning, rivaled in its importance only by optimization."
 
 #### 5.7.2 Support Vector Machines
 kernel trick :)
@@ -172,6 +172,66 @@ Many kinds of regularizations have been developed:
 - these additional components can add prior knowledge or preferences to the loss function
 - ensemble methods are also a kind of regularization
 - in the context of deep learning there is a focus on regularizing estimators. Regularization of estimators works by trading increased bias for reduced variance
+
+### 6.4 Architecture Design
+- depth of the network, 
+- width of the layer
+- "Deeper networks are often abel to user far fewer units per layer and far fewer parameters, as well as frequently generalizing to the test set, but they also tend to be harder to optimize. The ideal network architecture for a task must be found via experimentation guided by monitoring the validation set error."
+#### 6.4.2 Other architectural considerations
+- there are much more variants in neural network architectures beyond depth of the network and width of the layer.
+- feedforward networks:
+    - convolutional networks
+    - recurrent neural networks for sequence processing
+- layers do not need to be connected in a chain
+- how is layer $l$ connected to layer $l + 1$
+- fully connected: every output of layer $l$ with input of layer $l + 1$
+- specialized networks have layers where only subsets of output nodes are connected to input nodes of layer $l + 1$
+- convolutional networks are highly specialized for computer vision problems.
+
+### 6.5 Back-Propagation and Other Differentiation Algorithms
+- "When we use a feedforward neural network to accept an input $x$ and produce an output $y^{hat}$" information flows forward through the network. The input $x$ provides the initial information that then propagates up to the hidden units at each layer and finally produces $y^{hat}$. This is called *forward propagation*. During training, forward propagation can continue onward until it produces a scalar cost $J(\theta)$."
+- "The back-propagation algorithm (Rumelhart et al., 1986a), often simply called backprop, allows the information from the cost to then flow backward through the network in order to compute the gradient."
+- back-propagation: calculate the gradient
+- stochastic gradient descent: used to perform learning using this gradient
+- backprop not specific to multilayer neural networks, "in principle can compute derivatives of any function (for some functions, the correct response is to report that the derivative of the function is undefined)"
+- "The idea of computing derivatives by propagating information through a network is very general and can be used to compute values such as the Jacobian of a function f with multiple outputs. We restrict our description here to the most commonly used case, where f has a single output."
+
+#### 6.5.1 Computational Graphs
+- So far we have discussed neural networks with a relatively informal graph language.
+- formalize the computational graph language
+- each node in the graph indicates a variable. "The variable may be a scalar, vector, matrix, tensor, or even a variable of another type."
+- "An *operation* is a simple function of one or more variables. Our graph language is accompanied by a set of allowable operations. Functions more complicated than the operations in this set may be described by composing many operations together. Without loss of generality we define an operation to return only a single output variable. (...)
+If a variable y is computed by applying an operation to a variable x, then we draw a directed edge from x to y. We sometimes annotate the output node with the name of the operation applied."
+
+#### 6.5.2 Chain Rule of Calculus
+- "The chain rule of calculus (not to be confused with the chain rule of probability) is used to compute the derivatives of functions formed by composing other ufcntions, whose derivates are known. Back-propagation is an algorithm that computes the chain rule, with a specific order of operations that is highly efficient."
+- $\frac{dz}{dx} = \frac{dz}{dy}\cdot\frac{dy}{dx}$ with $y = g(x)$ and $z = f(g(x))$
+- $\frac{\delta y}{\delta x}$ is the Jacobian matrix of $g$.
+- "From this we see that the gradient of a variable $x$ can be obtained by multiplying a Jacobian matrix $\frac{\delta y}{\delta x}$ with a gradient $\Delta_y^z$. The back-propagation algorithm consist of performing such a Jacobian-gradient product for each operation in the graph."
+
+#### 6.5.3 Recursively Applying the Chain Rule to Obtain Backprop
+- "Using the chain rule, it is straightforward to write down an algebraic expression for the gradient of a scalar with respect to any node in the computational graph that produced that scalar. Actually evaluating that expression in a computer, however, introduces some extra considerations."
+- many operations need to be done several times: trade-off between calculating them anew each time resulting in larger run time vs. a larger memory footprint
+
+### 6.6 Historical Notes
+- "Feedforward networks can be seen as efficient nonlinear function approximators based on using gradient descent to minimize the error in a function approximation. From this point of view, the modern feedforward network is the culmination of centuries of progress on the general function approximation task."
+- "gradient descent was not introduced as a technique for iteratively approximating the solution to optimization problems until the nineteenth century (Cauchy, 1847).
+- flaws of the linear model family: "inability to learn the XOR function, which lead to a backlash against the entire neural network approach." 
+- "connectionism", "distributed representation"
+- "Following the success of back-propagation, neural network research gained popularity and reached a peak in the early 1990s. Afterwards, other machine learning techiques became more popular until the modern deep learning renaissance that began in 2006."
+- core ideas behind feedforward networks are the same, also the back-propagation algorithm and gradient descent. 
+- three factors for improvements:
+    - "larger datasets have reduced the degree to which statistical generalization is a challenge for neural networks"
+    - "Second, neural networks have become much larger, because of more powerful computers and better software infrastructure."
+    - "a small number of algorithmic changes have also improved the performance of neural networks noticeably."
+
+#### Algorithmic changes
+- cross entropy (log loss) function rather than mean squared error as loss function for networks with sigmoid outputs. (previous: saturation and slow learning)
+- ReLU instead of sigmoid (which performs better for small networks): AlexNet used ReLU, LeNet used sigmoid. False Assumption against ReLU: Activation functions with nondifferentiable points must be avoided.
+- Biology as inspiration: Neurons: "(1) for some inputs, biological neurons are completely inactive. (2) For some inputs, a biological neuron's output is proportional to its input. (3) Most of the time, biological neurons operate in the regime where they are inactive (i.e. they should have sparse activations)."
+
+From about 2006 to 2012 it was widely believed that feedforward networks would not perform well unless they were assisted by other models, such as probabilistic models.
+
 
 ### 7.1 Parameter Norm Penalties
 - for neural networks a norm penalty is used that addresses only the weights of the affine transformations at each layer, but not their biases.
@@ -189,7 +249,7 @@ many linear models in ML rely on inverting $X^T\cdot X$, which is only possible,
 - works well for speech recognition tasks
 - injecting noise
 
-But: neural networks turn out to be not very robust to noise. ($\righarrow$ Adversary attacks)
+But: neural networks turn out to be not very robust to noise. ($\rightarrow$ Adversary attacks)
 
 - dropout: a powerful regularization strategy can be seen as a process of constructing new inputs by multiplying by noise
 
