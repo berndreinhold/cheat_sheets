@@ -134,9 +134,18 @@ from https://scikit-learn.org/stable/auto_examples/applications/plot_cyclical_fe
 
 # python reduce()
 https://realpython.com/python-reduce-function/
-reduce() performsa an operation called folding or reduction.
+reduce() performs an operation called folding or reduction.
 
-## matplotlib - events 
+## matplotlib 
+### cheatsheets
+- https://github.com/matplotlib/cheatsheets and pdfs therein:
+- [matplotlib cheatsheet p.1](https://camo.githubusercontent.com/bc3b143766ed68eb6a851900c317c5d9222eb1471888942afb35137aa5141557/68747470733a2f2f6d6174706c6f746c69622e6f72672f63686561747368656574732f63686561747368656574732d312e706e67)
+- [matplotlib cheatsheet p.2](https://camo.githubusercontent.com/8566d191963c2ada58246241d19a1252c519edea1ecf4049f5bc939e302e36a8/68747470733a2f2f6d6174706c6f746c69622e6f72672f63686561747368656574732f63686561747368656574732d322e706e67)
+- [matplotlib for beginners](https://camo.githubusercontent.com/b1b8838502a81077591ccadbf45dc45f2207637b41245e557198b680b0a2e662/68747470733a2f2f6d6174706c6f746c69622e6f72672f63686561747368656574732f68616e646f75742d626567696e6e65722e706e67)
+- [matplotlib for intermediate users](https://camo.githubusercontent.com/fc055a0d3897e7aec7ec66fc1d7f70cfb2873f82eb5be4ea977286a1cf08fa74/68747470733a2f2f6d6174706c6f746c69622e6f72672f63686561747368656574732f68616e646f75742d696e7465726d6564696174652e706e67)
+- [tips & tricks](https://camo.githubusercontent.com/62a744e98372f7aaad377cf1f535dcc10117ff196c876102682b03ca4759f420/68747470733a2f2f6d6174706c6f746c69622e6f72672f63686561747368656574732f68616e646f75742d746970732e706e67)
+
+### events 
 onpick()
 
 https://matplotlib.org/stable/users/explain/event_handling.html
@@ -397,3 +406,7 @@ for Cloud and Services
 - Flake8: [PEP-8](https://peps.python.org/pep-0008/)
 - [The Zen of Python](https://peps.python.org/pep-0020/): ```import this```
 - [scikit-learn Developer's Guide](https://scikit-learn.org/stable/developers/)
+
+# Github Copilot
+- https://github.com/github/copilot-docs/blob/main/docs/visualstudiocode/gettingstarted.md#getting-started-with-github-copilot-in-visual-studio-code
+- https://copilot.github.com/
