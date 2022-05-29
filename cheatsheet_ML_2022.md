@@ -458,6 +458,7 @@ By default, parameter search uses the score function of the estimator to evaluat
 - Model Evaluation: $R^2 = 1 - \frac{MSE}{Var(y)}$
 - '[cross validation](https://en.wikipedia.org/wiki/Cross-validation_(statistics))' aka 'rotation estimation' or 'out-of-sample testing'
 - RBF: radial basis function: $\sum \exp(-|W - X|)$ - difficult to optimize as it saturates to 0 for most x (Goodfellow, DL)
+- Bagging: bootstrap aggregating
 ## Interesting AOB
 - [bias-variance decomposition](https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html): in regression the mean squared error can be decomposed in terms of bias, variance and noise.
 - Boolean features are Bernoulli random variables
