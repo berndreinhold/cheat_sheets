@@ -136,6 +136,7 @@ from https://scikit-learn.org/stable/auto_examples/applications/plot_cyclical_fe
 https://realpython.com/python-reduce-function/
 reduce() performs an operation called folding or reduction.
 
+
 ## matplotlib 
 ### cheatsheets
 - https://github.com/matplotlib/cheatsheets and pdfs therein:
@@ -350,6 +351,13 @@ F5, CTRL+SHFT+F5
 ```
 remote debugging: https://code.visualstudio.com/docs/python/debugging#_debugging-by-attaching-over-a-network-connection
 SSH forwarding
+
+## VS code: debug ipynb notebooks:
+```
+pip3 install -U ipykernel
+```
+restart VS code
+(there are some minimum requirements, like VS code version > 1.6)
 
 ## Options
 ```
