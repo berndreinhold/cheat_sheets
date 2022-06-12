@@ -459,6 +459,7 @@ two types of integers: int, boolean
 #### sequences
 - finite ordered sets, indexed by non-negative numbers
 - has len(), items of the sequence are accessable through an index i, s[i]
+- supports slicing
 
 ##### immutable sequences
 - strings, bytes, tuples: the items of tuples are arbitrary Python objects
