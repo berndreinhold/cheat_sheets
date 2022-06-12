@@ -418,3 +418,107 @@ for Cloud and Services
 # Github Copilot
 - https://github.com/github/copilot-docs/blob/main/docs/visualstudiocode/gettingstarted.md#getting-started-with-github-copilot-in-visual-studio-code
 - https://copilot.github.com/
+
+
+## Python Data Model
+https://docs.python.org/3/reference/datamodel.html
+
+"Objects are Python's abstraction for data. All data is either represented by objects or relations between objects."
+Every object has an identity, a type and a value. An object's identity never changes once it has been created. You may think of it as the object's address in memory. The 'is' operator checks the identity of an object; the id() function returns an integer representing the identity of an object."
+"For CPython id(x) is the memory address where x is stored."
+
+"Object's type is also unchangeable."
+
+an object's mutability is determined by its type.
+An immutable object (tuples) can contain mutable objects (lists).
+
+immutable:
+- numbers, strings, tuple 
+
+mutable:
+- dict, list
+
+objects are never explicitly destroyed, however when they become unreachable, they might be garbage collected. 
+
+reference counting scheme
+
+files: external resources. Close them with the "with"-statement or "try..finally"-statement
+
+containers: objects with references to other objects
+
+tuples, lists, dictionaries are containers
+
+a=1, b=1 depending on the implementation might point to the same object
+
+### built-in types
+None, NotImplemented - single object with that value
+Ellipsis: ...
+
+two types of integers: int, boolean
+
+#### sequences
+- finite ordered sets, indexed by non-negative numbers
+- has len(), items of the sequence are accessable through an index i, s[i]
+
+##### immutable sequences
+- strings, bytes, tuples: the items of tuples are arbitrary Python objects
+
+##### mutable sequences
+- lists, dictionaries
+- array, collections
+
+##### on dictionaries
+- a dictionary is a hash table, not a sequence
+- the order of objects in a dicionary is out of the programmer's control.
+- the access of objects is by key, never by value: a dictionary is a one-way tool
+- keys are case-sensitive
+- items(), keys(), values()
+- del dict[key]
+-
+
+#### sets
+- unordered, finite, immutable objects
+- iterated over, len()
+- not indexable via subscript
+- common use cases: remove duplicates from sequences, mathematical operations such as intersect, union, difference, symmetric difference
+- for set elements the same immutability rules apply as for dictionary keys (sets are dictionaries with just the keys, without values)
+
+##### sets
+
+##### frozen sets
+
+
+## Callable types
+- ```__func__.__doc__```
+- ```__func__.__name__```
+- ```__module__```
+- ```__globals__```
+- ```__defaults__```
+
+## Generator functions
+- a function that uses the ```yield``` statement: iterator object
+
+## modules
+- import
+- a module call is equivalent ```m.x``` to ```m.__dict__["x"]``` 
+
+## 3.3 Special method names
+- Python approach to operator overloading
+- ```__getitem()__```
+- ```x[i]``` is equivalent to ```type(x).__getitem(x, i)__```
+- ```__new()__```: customize class creation, in particular for immutable types
+- ```__new()__``` is closely related to ```__init()__```
+- ```super().__init()__```: call init() of the base class
+
+"Called when the instance is about to be destroyed. This is also called a finalizer or (improperly) a destructor. If a base class has a ```__del__()``` method, the derived class’s ```__del__()``` method, if any, must explicitly call it to ensure proper deletion of the base class part of the instance."
+from https://docs.python.org/3/reference/datamodel.html
+
+```del x``` doesn’t directly call ```x.__del__()``` — the former decrements the reference count for x by one, and the latter is only called when x’s reference count reaches zero.
+
+### 3.3.2 Customizing attribute access
+None
+
+### Metaclasses
+
+### Ellipsis
+https://stackoverflow.com/questions/772124/what-does-the-ellipsis-object-do
