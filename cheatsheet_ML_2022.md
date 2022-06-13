@@ -490,3 +490,92 @@ By default, parameter search uses the score function of the estimator to evaluat
 - Natural Language Processing with Transformers: Building Language Applications with Hugging Face
 - Designing Machine Learning Systems: An Iterative Process for Production Ready Applications (Chip Huyen)
 - Python: Data Science Handbook
+
+
+## 2.7 Anomaly detection: Novelty and Outlier Detection
+- https://scikit-learn.org/stable/modules/outlier_detection.html
+- clean real data sets
+- tails of a distribution or in the main distribution
+- outlier: unknown, separate distribution compared to a known, expected distribution
+- novelty detection vs. outlier detection: the former: whether a new entry belongs to an existing main or unpolluted distribution
+- a distance measure: "far" from a main distribution
+- anomaly detection:
+    - outlier detection: unsupervised anomaly detection
+    - novelty detection: semi-supervised anomaly detection
+
+
+- outlier detection: do not form a cluster themselves, low density area
+- novelty detection: could form a dense cluster, as long as they are in a low density area of the training data
+
+- anomaly detection in scikit-learn:
+- learn in an unsupervised learning fashion
+- ```estimator.fit(X_train)```
+- ```estimator.predict(X_test)```: inliers: 1, outliers: -1
+- predict method: threshold on a scoring function (accessable via - ```estimator.score_samples(X_test)```) learned on the training data.
+- decision function: positive or negative score for inliers or outliers
+
+- neighbors.LocalOutlierFactor() has an outlier and a novelty detection mode. (see below)
+
+- PCA is a very good first step for anomaly detection to minimize the curse of 
+
+
+### my own idea of anomaly detection (unsupervised)
+- take your preferred clustering algorithm
+- describe each cluster in its own coordinate system. Perform PCA with a var (90 % or 95 %) criterium. 
+- Apply a rms (default: three) RMS criterium to select inliers around these clusters. 
+- Determine inliers of all clusters: points can also be inliers to more than one cluster. 
+- All remaining points are then outliers.
+- Merge clusters for which there is a significant fraction of overlap of common inliers
+- tails of distributions
+
+#### Future steps: 
+- estimate the manifold in which the cluster lives
+- use DBSCAN to get the high density points, which then form the manifold.
+- estimate outliers relative to these manifolds 
+
+### 2.7.1 Overview of Outlier Detection Methods
+- IsolationForest
+- [One-Class SVM](https://scikit-learn.org/stable/modules/generated/sklearn.svm.OneClassSVM.html) (classic or stochastic): unstable against outliers, uses libsvm, estimate the support of high dimensional distribution.
+- LocalOutlierFactor
+
+### [neighbors.LocalOutlierFactor](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.LocalOutlierFactor.html)
+- second description: https://scikit-learn.org/stable/modules/outlier_detection.html#local-outlier-factor
+- novelty flag
+- novelty detection: fit(X_train), then predict() on new test data 
+- outlier detection: fit_predict(X) (contains already inliers and outliers)
+
+### [IsolationForest](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.LocalOutlierFactor.html)
+Return the anomaly score of each sample using the Isolation Forest Algorithm.
+
+The IsolationForest algorithm isolates outliers by selecting a feature and determining a split between in- and outliers based on the min and max in this feature.
+Recursive partitioning can be represented as a tree structure. The number of splittings required to isolate samples is equivalent to the path length from finale node to root node. This path length averaged over a forest of such trees is an estimate of the normality and our decision function.
+
+Random partitioning produces notably shorter paths for anomalies. Hence when a forest produces shorter path lengths, these are very likely outliers in certain subsets of features.
+
+
+### 2.7.2 Novelty detection method
+- consider a distribution of n samples represented by p features. With incoming new data, does it originate from the already known distribution or is it from a previously unknown distribution?
+- learn a rough, close boundary or decision function or frontier to enclose the distribution of points enclosed.
+- if further observation lie within this boundary, it is considered as coming from this distribution
+
+### 2.7.3 Outlier detection
+- One has already a training set containing inlier and outliers.
+- No clean dataset to start from.
+- covariance.EllipticEnvelope used to estimate a robust covariante (Mahalanobis distance)
+- assumes Gaussian distributed variables
+- covariance is not robust against outliers
+
+### 2.7.3.2 Isolation Forest
+see above.
+Maximul depth of tree: log_2(n), where n is the number of samples.
+
+### 2.7.3.3 LocalOutlierFactor
+- estimate local density using k-means algorithm
+- number k of neighbors considered: k=20 seems to be a good number
+- how isolated is it wrt the surrounding neighborhood
+- no ```predict()```, ```score_samples_``` or ```decision_function```, just ```fit_predict()```
+
+### Mahalanobis distance
+- distance of one observation to the modes of its distribution in an n-dimensional space.
+- how many standard deviation is an observation away from a  distribution D?
+
