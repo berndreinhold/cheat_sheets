@@ -133,8 +133,24 @@ from https://scikit-learn.org/stable/auto_examples/applications/plot_cyclical_fe
 
 
 # python reduce()
-https://realpython.com/python-reduce-function/
-reduce() performs an operation called folding or reduction.
+- https://realpython.com/python-reduce-function/
+- reduce() performs an operation called folding or reduction.
+- aggregates an array to one value
+
+
+```
+def reduce(function, iterable, initializer=None):
+    it = iter(iterable)
+    if initializer is None:
+        value = next(it)
+    else:
+        value = initializer
+    for element in it:
+        value = function(value, element)
+    return value
+```
+
+"In functional programming, fold (also termed reduce, accumulate, aggregate, compress, or inject) refers to a family of higher-order functions that analyze a recursive data structure and through use of a given combining operation, recombine the results of recursively processing its constituent parts, building up a return value. Typically, a fold is presented with a combining function, a top node of a data structure, and possibly some default values to be used under certain conditions. The fold then proceeds to combine elements of the data structure's hierarchy, using the function in a systematic way." (from https://en.wikipedia.org/wiki/Fold_%28higher-order_function%29)
 
 
 ## matplotlib 
@@ -151,6 +167,23 @@ onpick()
 
 https://matplotlib.org/stable/users/explain/event_handling.html
 
+## Seaborn
+```
+sns.distplot(df['Profit'])
+plt.title("Distribution of Profit")
+sns.despine()
+```
+from https://towardsdatascience.com/anomaly-detection-for-dummies-15f148e559c1
+
+
+## statistical measures
+### skewness
+how asymmetric is a distribution?
+### curtosis
+how tailed or peaked is a distribution?
+c > 3 
+
+
 ## class
 class X():
     def Y(self, dataset : str):        
@@ -161,7 +194,14 @@ class X():
 
 this does not work, the second Y() masks the first Y() - in C++ one could overload like this, but not in python it seems.
 
-one could use decorators though: 
+one could use decorators though
+
+
+### alias to class methods
+[alias to private member function](img/python_private_member_function.png)
+Includes mangling, avoids conflicts, since the ```__update = update``` seems to be called before it is replaced by the update()-function of the sub class.
+It thereby avoids conflicts in ```__init__()```
+Also the alias is called without arguments. Very clean and simple.
 
 ## named tuples
 https://stackoverflow.com/questions/2970608/what-are-named-tuples-in-python
@@ -394,7 +434,7 @@ Python tests are Python classes that reside in separate files from the code bein
 1. download framework (e.g. Pytest or Unittest frameworks)
 2. create test_xxx.py script ([Create Tests](https://code.visualstudio.com/docs/python/testing#_create-tests))
 3. [run tests](https://code.visualstudio.com/docs/python/testing#_run-tests) or even [in parallel](https://code.visualstudio.com/docs/python/testing#_run-tests-in-parallel)
-
+4. understand batch normalization: https://towardsdatascience.com/speeding-up-training-of-neural-networks-with-batch-normalization-29e833260c86?source=read_next_recirc---------0---------------------1796877a_8b80_4082_b6d7_655e033b0eb7-------
 
 # Notebooks
 "The support for mixing executable code, equations, visualizations, and rich Markdown makes notebooks useful for breaking down new concepts in a story telling form. This makes notebooks an exceptional tool for educators and students!" [quote](https://code.visualstudio.com/docs/datascience/overview)
@@ -523,3 +563,25 @@ None
 
 ### Ellipsis
 https://stackoverflow.com/questions/772124/what-does-the-ellipsis-object-do
+
+
+
+# Markdown formatting:
+formatting with the depth level:
+-1
+-2 
+or:
+- 
+-- 
+---
+- 
+--
+--
+
+potentially interesting new idea
+
+## Point Cloud Methods
+### ICP: Iterative Closest Point
+### stochastic ICP: 
+### Iterative Random Consensus Projection
+https://github.com/ohadmen/pyircp
