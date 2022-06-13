@@ -26,7 +26,21 @@ The former means there is an object o, which calls a function f() and what f() d
 - generics (introduced by C++): templates
 
 ## functional programming
-- according to: 
+- according to: http://blog.cleancoder.com/uncle-bob/2018/04/13/FPvsOO.html
+- ```f(a) == f(b) if a == b``` (referential transparency)
+- not to mention outside world (persisting in databases, files, etc)
+- no assignment operator
+- key: recursion
+- a function that takes a state data structure as argument. It calls itself and modifies the state data structure, returning it at the end.
+- "referential transparency - no reassignment of values"
+- FP and OO work nicely together
+
+### stateless
+- excellent for multithreading and concurrent code
+- no race conditions
+- simplified debugging
+- https://stackoverflow.com/questions/844536/advantages-of-stateless-programming#844548
+
 
 
 ## SOLID design principles
@@ -36,7 +50,7 @@ Ideally results in [less merge conflicts](https://www.freecodecamp.org/news/soli
 - **O**pen-Closed Principle: open for enhancement, closed for modification (backwards compatibility)
 - **L**iskov Substitution Principle: if S is a subtype of T, feeding S into a program expecting T, the program should behave gracefully. (After Barbara Liskov)
 - **I**nterface Segregation Principle: separating interfaces: "Keep interfaces small" so that users do not dependent on things they don't need. (http://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html)
-- **D**ependency Inversion Principle: classes should depend on abstract classes and interfaces, rather than concrete classes. "Depend in the direction of abstraction. High-level classes should not depend on low-level details." 
+- **D**ependency Inversion Principle: classes should depend on abstract classes and interfaces, rather than concrete classes. "Depend in the direction of abstraction. High-level classes should not depend on low-level details." ([good example](https://hackernoon.com/solid-principles-simple-and-easy-explanation-f57d86c47a7f))
 
 
 LID: single, Liskov, 
