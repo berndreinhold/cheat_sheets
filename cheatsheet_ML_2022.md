@@ -301,6 +301,13 @@ For instance, a well calibrated (binary) classifier should classify the samples 
     - concrete labels used for targets do not matter much
     - model learning should thus be target-agnostic
 
+### Support Vector Machines (SVM)
+- supervised learning technique
+- classification and regression tasks
+- find a decision function between two categories: maximize margin between two classes
+- powerful through kernel method
+
+
 ### Examples of loss functions
 - mean squared error (MSE)
 - y = f(x) can be:
@@ -496,6 +503,8 @@ By default, parameter search uses the score function of the estimator to evaluat
 - Carsten K., May 2022: "egal welches Framework Du verwendest, die Netzwerkbeschreibung wird mit Keras gemacht. Das läuft bei mir alles unter Tensorflow"
 - having an idea vs. popularizing it: https://medium.com/syncedreview/who-invented-backpropagation-hinton-says-he-didnt-but-his-work-made-it-popular-e0854504d6d1
 - AutoML: Julian empfiehlt es. ML ist vielleicht nicht mehr das Problem.
+- Interesting comments/reply and references therein: https://stats.stackexchange.com/questions/474058/number-of-parameters-and-neural-networks (To be read as of June 2022)
+- 175 Billion ML parameters for GPT-3: https://arxiv.org/abs/2005.14165 (To be read as of June 2022)
 
 ## Book Recommendations
 - Twitter feed (Chris Albon, Mai 22, 2022)
