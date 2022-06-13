@@ -441,9 +441,23 @@ By default, parameter search uses the score function of the estimator to evaluat
 - 
 
 ### Log Loss
-- log loss, logistic regression loss or cross-entropy loss
+- log loss, logistic regression loss or cross-entropy loss ()
 - commonly used in (multinomial) logistic regression and neural networks 
 - predict_proba()
+- "The goal of maximum likelihood estimation is to determine the parameters for which the observed data have the highest joint probability. " (https://en.wikipedia.org/wiki/Maximum_likelihood_estimation)
+- for log loss: binary variable (Bernoulli-distributed)
+
+### Bias-variance tradeoff
+- https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff
+- Generalization and Training Error vs. model complexity: bias (underfitting), variance(overfitting)
+- supervised learning algorithms: generalizing beyond their training set. 
+    - bias error is an error from erroneous a assumptions
+
+- bias-variance decomposition: expected generalization error
+- choose a model that both accurately describes the regularization 
+- sweet spot between under- (high bias) and overfitting (high variance)
+- "Intuitively, bias is reduced by using only local information, whereas variance can only be reduced by averaging over multiple observations, which inherently means using information from a larger region."
+- "In decision trees, the depth of the tree determines the variance. Decision trees are commonly pruned to control variance."
 
 ## Glossary
 - RANSAC: random sampling consensus - Zufallsstichprobe
@@ -481,6 +495,7 @@ By default, parameter search uses the score function of the estimator to evaluat
         - number of iterations: number of passes, each pass using [batch size] number of examples."
 - Carsten K., May 2022: "egal welches Framework Du verwendest, die Netzwerkbeschreibung wird mit Keras gemacht. Das läuft bei mir alles unter Tensorflow"
 - having an idea vs. popularizing it: https://medium.com/syncedreview/who-invented-backpropagation-hinton-says-he-didnt-but-his-work-made-it-popular-e0854504d6d1
+- AutoML: Julian empfiehlt es. ML ist vielleicht nicht mehr das Problem.
 
 ## Book Recommendations
 - Twitter feed (Chris Albon, Mai 22, 2022)
