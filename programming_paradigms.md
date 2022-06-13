@@ -1,5 +1,5 @@
 # Programming paradigms
-Overview 
+Overview: https://towardsdatascience.com/what-is-a-programming-paradigm-1259362673c2
 
 ## polymorphism 
 - german: Vielgestaltigkeit (auch bekannt in der Biologie)
@@ -41,6 +41,8 @@ The former means there is an object o, which calls a function f() and what f() d
 - simplified debugging
 - https://stackoverflow.com/questions/844536/advantages-of-stateless-programming#844548
 
+### [Functional Programming HOWTO](https://docs.python.org/3/howto/functional.html)
+- iterators as an important building block
 
 
 ## SOLID design principles
@@ -53,7 +55,6 @@ Ideally results in [less merge conflicts](https://www.freecodecamp.org/news/soli
 - **D**ependency Inversion Principle: classes should depend on abstract classes and interfaces, rather than concrete classes. "Depend in the direction of abstraction. High-level classes should not depend on low-level details." ([good example](https://hackernoon.com/solid-principles-simple-and-easy-explanation-f57d86c47a7f))
 
 
-LID: single, Liskov, 
 "software hasn’t change all that much since 1945 when Turing wrote the first lines of code for an electronic computer" (http://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html)
 
 ### disagreement by Dan North: "write simple code"
@@ -95,3 +96,11 @@ The relevant ones for me:
 - "altough practicality beats purity"
 - "now is better than never."
 - "In the face of ambiguity, refuse the temptation to guess"
+
+## design patterns
+- https://www.geeksforgeeks.org/design-patterns-set-1-introduction/
+- creational
+- structural
+- behavioral
+
+## Test Driven Development

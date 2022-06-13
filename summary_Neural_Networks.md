@@ -34,7 +34,8 @@ fully connected vs. convolutional neural networks
 "encoding"
 
 Tips and Tricks:
-- analyze a problem form a deep learning approach
+- analyze a problem 
+- form a deep learning approach
 - choose an architecture
 - choose a loss and a training strategy
 
