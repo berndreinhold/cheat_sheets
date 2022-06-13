@@ -1,5 +1,5 @@
 # Programming paradigms
-
+Overview 
 
 ## polymorphism 
 - german: Vielgestaltigkeit (auch bekannt in der Biologie)
@@ -23,8 +23,61 @@ The former means there is an object o, which calls a function f() and what f() d
 - python: everything is public
 - "“Private” instance variables that cannot be accessed except from inside an object don’t exist in Python. However, there is a convention that is followed by most Python code: a name prefixed with an underscore (e.g. _spam) should be treated as a non-public part of the API (whether it is a function, a method or a data member). It should be considered an implementation detail and subject to change without notice." (from https://docs.python.org/3/tutorial/classes.html#tut-private)
 
+- generics (introduced by C++): templates
+
 ## functional programming
 - according to: 
 
 
 ## SOLID design principles
+for object-oriented programming. 
+- **S**ingle Responsibility Principle: group things that change for the same reasons, split things that change for different reasons. Only do one thing.
+Ideally results in [less merge conflicts](https://www.freecodecamp.org/news/solid-principles-explained-in-plain-english/).
+- **O**pen-Closed Principle: open for enhancement, closed for modification (backwards compatibility)
+- **L**iskov Substitution Principle: if S is a subtype of T, feeding S into a program expecting T, the program should behave gracefully. (After Barbara Liskov)
+- **I**nterface Segregation Principle: separating interfaces: "Keep interfaces small" so that users do not dependent on things they don't need. (http://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html)
+- **D**ependency Inversion Principle: classes should depend on abstract classes and interfaces, rather than concrete classes. "Depend in the direction of abstraction. High-level classes should not depend on low-level details." 
+
+
+LID: single, Liskov, 
+"software hasn’t change all that much since 1945 when Turing wrote the first lines of code for an electronic computer" (http://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html)
+
+### disagreement by Dan North: "write simple code"
+- "is-a" and "has-a" mindset (from https://speakerdeck.com/tastapod/why-every-element-of-solid-is-wrong?slide=11)
+- "acts-like-a" and "can-be-used-as-a" - composition is easier than inheritance, try to avoid object hierarchies
+- "write code, that fits in your head"
+- Uncle Bob: he agrees on simple code, his SOLID principles result in simple code.
+
+
+## Zen of Python
+```
+$ import this
+
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+```
+
+The relevant ones for me:
+- "simple is better than complex"
+- "altough practicality beats purity"
+- "now is better than never."
+- "In the face of ambiguity, refuse the temptation to guess"
