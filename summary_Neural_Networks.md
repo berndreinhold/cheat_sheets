@@ -118,6 +118,37 @@ LSTM: can look back much longer
 Text translation: phrase to phrase or sentence to sentence translation
 Robotics: agent taking in information, decision, action (LSTM looks )
 
+# semantic segmentation
+- https://www.v7labs.com/blog/semantic-segmentation-guide
+- classification at the pixel-level
+- Semantic Segmentation, Instance Segmentation
+- process: downsampling, upsampling
+- create a segmentation mask
+- size of images is reduced via the max-pooling layer
+- U-Net, Ronneberger: https://arxiv.org/abs/1505.04597
+- U-Net: instead of a sliding window convolutional layer
+- no fully connected layer
+
+- "The value of data augmentation for learning invariance has been
+shown in Dosovitskiy et al. \[2\] in the scope of unsupervised feature learning." 
+
+# recurrent neural network (RNN)
+- https://medium.com/swlh/introduction-to-recurrent-neural-networks-rnn-c2374305a630
+- understand context
+
+# encoder-decoder models
+- https://towardsdatascience.com/what-is-an-encoder-decoder-model-86b3d57c5e1a
+- Encoder (RNN + ) -> hidden state -> decoder (dense layer + RNN)
+
+## Applications
+- image to word vector
+- sentiment analysis
+- translation: "Our model consists of a deep LSTM network with 8 encoder and 8 decoder layers using attention and residual connections. " (Google's Neural Machine Translation System: Bridging the Gap between Human and Machine Translation, https://arxiv.org/abs/1609.08144)
+
+# attention is all you need
+- Transformer models
+- https://towardsdatascience.com/what-is-attention-mechanism-can-i-have-your-attention-please-3333637f2eac
+
 # Example Networks and Architectures
 ## AlexNet
 - Tremendous improvement on ImageNet competition in 2012
@@ -166,13 +197,6 @@ Regularization examples:
 #### 5.7.2 Support Vector Machines
 kernel trick :)
 The kernel-based function is exactly equivalent to preprocessing the data by applying $phi(x)$ to all inputs, then learning a linear model in the new transformed space.
-## 7 Regularization for Deep Learning
-Strategies designed to reduce the test error even if at the cost of a higher training error are called regularization.
-Many kinds of regularizations have been developed:
-- additional components in the loss (aka cost) function, e.g. parameter norm penalties
-- these additional components can add prior knowledge or preferences to the loss function
-- ensemble methods are also a kind of regularization
-- in the context of deep learning there is a focus on regularizing estimators. Regularization of estimators works by trading increased bias for reduced variance
 
 ### 6.4 Architecture Design
 - depth of the network, 
@@ -233,6 +257,15 @@ If a variable y is computed by applying an operation to a variable x, then we dr
 
 From about 2006 to 2012 it was widely believed that feedforward networks would not perform well unless they were assisted by other models, such as probabilistic models.
 
+## 7 Regularization for Deep Learning
+Strategies designed to reduce the test error even if at the cost of a higher training error are called regularization.
+Many kinds of regularizations have been developed:
+- additional components in the loss (aka cost) function, e.g. parameter norm penalties
+- these additional components can add prior knowledge or preferences to the loss function
+- ensemble methods are also a kind of regularization
+- in the context of deep learning there is a focus on regularizing estimators. Regularization of estimators works by trading increased bias for reduced variance
+- dropout
+- parameter sharing
 
 ### 7.1 Parameter Norm Penalties
 - for neural networks a norm penalty is used that addresses only the weights of the affine transformations at each layer, but not their biases.
