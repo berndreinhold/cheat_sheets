@@ -506,6 +506,11 @@ By default, parameter search uses the score function of the estimator to evaluat
 - Interesting comments/reply and references therein: https://stats.stackexchange.com/questions/474058/number-of-parameters-and-neural-networks (To be read as of June 2022)
 - 175 Billion ML parameters for GPT-3: https://arxiv.org/abs/2005.14165 (To be read as of June 2022)
 
+### Mahalanobis distance
+- distance of one observation to the modes of its distribution in an n-dimensional space.
+- how many standard deviation is an observation away from a  distribution D?
+
+
 ## Book Recommendations
 - Twitter feed (Chris Albon, Mai 22, 2022)
 - "What are the best ML books to come out in the last three years? They can be code-focused, theory-focused, whatever, but they have to be books"
@@ -593,13 +598,10 @@ Random partitioning produces notably shorter paths for anomalies. Hence when a f
 see above.
 Maximul depth of tree: log_2(n), where n is the number of samples.
 
-### 2.7.3.3 LocalOutlierFactor
+### 2.7.3.3 LocalOutlierFactor (clustering algorithm)
 - estimate local density using k-means algorithm
 - number k of neighbors considered: k=20 seems to be a good number
 - how isolated is it wrt the surrounding neighborhood
 - no ```predict()```, ```score_samples_``` or ```decision_function```, just ```fit_predict()```
 
-### Mahalanobis distance
-- distance of one observation to the modes of its distribution in an n-dimensional space.
-- how many standard deviation is an observation away from a  distribution D?
 
