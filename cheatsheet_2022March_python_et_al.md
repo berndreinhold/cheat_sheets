@@ -285,6 +285,10 @@ The red facecolor and transparent=False would not work, even without the presenc
 ## small
 - int(x), where x is a tuple does not work element-wise
 
+## sorted() vs list.sort()
+- the latter returns none, as it performs an in-place sorting of the list: can make a performance difference for large lists.
+- sorted() in contrast returns a sorted list without affecting the input list. It works with any list of iterables.
+
 # markdown
 ## links to headlines in markdown
 - https://docs.gitlab.com/ee/user/markdown.html#header-ids-and-links
@@ -585,3 +589,9 @@ potentially interesting new idea
 ### stochastic ICP: 
 ### Iterative Random Consensus Projection
 https://github.com/ohadmen/pyircp
+
+
+# graphs
+- https://medium.com/geekculture/how-to-represent-a-graph-data-structure-in-python-9f0df57e33a2
+- representation as a matrix
+- representation as a list of neighbors (a dictionary)
